@@ -10,23 +10,30 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #0F1115;
-      --ink-sub: #181C23;
-      --steel-dark: #262C36;
-      --surface: #F4F5F7;
+      --ora-navy: #07225A;
+      --ora-royal: #0F3D99;
+      --ora-blue: #1D4ED8;
+      --ora-sky: #0284C7;
+      --ora-cyan: #38BDF8;
+      --ora-ice: #EFF6FF;
+      --ora-ice-deep: #DBEAFE;
+      --surface: #F4F7FC;
       --surface-pure: #FFFFFF;
-      --grid-line: #D1D5DB;
-      --grid-dark: #2E3644;
-      --ora-navy: #001B5E;
-      --ora-red: #C81E1E;
-      --ora-amber: #D97706;
+      --grid-line: #CBD5E1;
+      --grid-blue: #BFDBFE;
+      --ink: #0B1F4B;
+      --ora-red: #DC2626;
+      --ora-amber: #F59E0B;
       --npay-green: #03C75A;
       --signal-green: #059669;
-      --text-main: #111315;
-      --text-body: #374151;
-      --text-muted: #6B7280;
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
       --mono: 'JetBrains Mono', monospace;
       --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 2px 8px rgba(15, 61, 153, 0.06);
+      --shadow-md: 0 10px 28px rgba(7, 34, 90, 0.10);
+      --shadow-lg: 0 20px 48px rgba(7, 34, 90, 0.16);
     }
 
     * {
@@ -54,102 +61,119 @@
       letter-spacing: -0.02em;
     }
 
-    /* 1. TOP ENGINEERING UTILITY BAR */
+    /* 1. TOP CORPORATE BLUE UTILITY BAR */
     .utility-bar {
-      background: var(--ink);
-      color: #D1D5DB;
+      background: linear-gradient(90deg, #061D4E 0%, #0A2E7A 100%);
+      color: #E0ECFF;
       font-size: 12px;
-      border-bottom: 1px solid var(--grid-dark);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
     }
     .utility-inner {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 8px 24px;
+      padding: 7px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 12px;
+      white-space: nowrap;
+      overflow: hidden;
     }
     .u-left, .u-right {
       display: flex;
       align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 12px;
+      white-space: nowrap;
+    }
+    .u-left { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .u-right { flex-shrink: 0; }
+    @media (max-width: 1120px) {
+      .u-hide-md { display: none; }
+    }
+    @media (max-width: 760px) {
+      .utility-bar { display: none; }
     }
     .status-dot {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 8px #10B981;
+      background: #34D399;
+      box-shadow: 0 0 8px #34D399;
       margin-right: 6px;
+      vertical-align: middle;
     }
     .u-divider {
-      color: #4B5563;
+      color: rgba(147, 197, 253, 0.45);
     }
     .u-link {
-      color: #E5E7EB;
+      color: #E0F2FE;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s;
     }
     .u-link:hover {
-      color: #FBBF24;
+      color: #7DD3FC;
     }
 
-    /* 2. STICKY PRECISION GNB HEADER */
+    /* 2. STICKY PRECISION GNB HEADER (SINGLE-LINE GUARANTEED AT 1280PX+) */
     header.site-header {
       position: sticky;
       top: 0;
       z-index: 600;
       background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--ink);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--ora-royal);
+      box-shadow: 0 4px 18px rgba(7, 34, 90, 0.07);
     }
     .header-inner {
       max-width: 1440px;
       margin: 0 auto;
-      height: 76px;
-      padding: 0 24px;
+      height: 68px;
+      padding: 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 10px;
     }
     .brand-box {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       cursor: pointer;
       text-decoration: none;
       color: inherit;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
     .brand-logo {
-      height: 42px;
+      height: 30px;
+      width: auto;
       object-fit: contain;
     }
     .brand-vline {
       width: 1px;
-      height: 30px;
-      background: var(--grid-line);
+      height: 24px;
+      background: var(--grid-blue);
     }
     .brand-meta {
       display: flex;
       flex-direction: column;
+      white-space: nowrap;
     }
     .brand-meta .en {
       font-family: var(--mono);
-      font-size: 10.5px;
+      font-size: 9px;
       font-weight: 800;
-      color: var(--ora-red);
-      letter-spacing: 0.08em;
+      color: var(--ora-blue);
+      letter-spacing: 0.06em;
     }
     .brand-meta .kr {
-      font-size: 14px;
+      font-size: 12.5px;
       font-weight: 900;
-      color: var(--ink);
+      color: var(--ora-navy);
       letter-spacing: -0.03em;
     }
 
@@ -157,48 +181,58 @@
       display: flex;
       align-items: center;
       height: 100%;
+      gap: 2px;
+      flex-shrink: 0;
     }
     .gnb-item {
-      height: 74px;
-      padding: 0 18px;
+      height: 38px;
+      padding: 0 9px;
       display: inline-flex;
       align-items: center;
       background: transparent;
       border: none;
-      border-bottom: 3px solid transparent;
-      font-size: 15px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 800;
-      color: var(--text-main);
+      color: #1E293B;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: color 0.15s, background 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .gnb-item:hover {
-      color: var(--ora-red);
-      background: #F9FAFB;
+      color: var(--ora-blue);
+      background: var(--ora-ice);
     }
     .gnb-item.active {
-      color: var(--ora-navy);
-      border-bottom-color: var(--ora-red);
+      color: var(--ora-royal);
+      background: #EFF6FF;
+      box-shadow: inset 0 0 0 1px #BFDBFE;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 5px;
+      flex-shrink: 0;
     }
-    /* 스마트스토어 하이브리드 모드 토글 스위치 */
+    /* 스마트스토어 하이브리드 모드 토글 (한 줄 고정) */
     .mode-switch-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border: 1.5px solid var(--ink);
-      background: #F8FAFC;
-      font-size: 12px;
+      gap: 5px;
+      height: 34px;
+      padding: 0 9px;
+      border-radius: 7px;
+      border: 1.5px solid var(--grid-blue);
+      background: var(--ora-ice);
+      font-size: 11.5px;
       font-weight: 800;
-      color: var(--ink);
+      color: var(--ora-navy);
       cursor: pointer;
       transition: all 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .mode-switch-btn.npay-active {
       background: #ECFDF5;
@@ -207,164 +241,253 @@
     }
     .mode-badge {
       padding: 2px 6px;
+      border-radius: 4px;
       font-family: var(--mono);
       font-size: 10px;
       font-weight: 800;
-      background: var(--ink);
+      background: var(--ora-royal);
       color: #fff;
+      white-space: nowrap;
     }
     .mode-switch-btn.npay-active .mode-badge {
       background: var(--npay-green);
       color: #fff;
     }
 
+    .btn-header-compare {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 7px;
+      background: #FFFFFF;
+      color: var(--ora-royal);
+      border: 1.5px solid var(--ora-blue);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-header-compare:hover { background: var(--ora-ice); }
+
     .btn-quote-cart {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      height: 42px;
-      padding: 0 16px;
-      background: var(--ora-navy);
+      gap: 6px;
+      height: 36px;
+      padding: 0 11px;
+      border-radius: 7px;
+      background: var(--ora-royal);
       color: #fff;
       border: none;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.15s;
     }
     .btn-quote-cart:hover {
-      background: #00298A;
+      background: var(--ora-blue);
     }
     .cart-count {
       font-family: var(--mono);
-      background: var(--ora-red);
-      color: #fff;
-      padding: 1px 7px;
-      font-size: 11px;
-      font-weight: 800;
+      background: #38BDF8;
+      color: #061D4E;
+      padding: 1px 6px;
+      border-radius: 99px;
+      font-size: 10.5px;
+      font-weight: 900;
     }
 
     .btn-hotline {
       display: inline-flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 42px;
-      padding: 0 14px;
-      background: var(--ora-red);
+      align-items: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #1D4ED8 0%, #0284C7 100%);
       color: #fff;
       text-decoration: none;
-      line-height: 1.15;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
     }
+    .btn-hotline:hover { filter: brightness(1.07); }
     .btn-hotline .lbl {
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 700;
-      opacity: 0.9;
+      opacity: 0.92;
     }
     .btn-hotline .num {
       font-family: var(--mono);
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    @media (max-width: 1380px) {
+      .header-inner { padding: 0 12px; gap: 6px; }
+      .brand-meta .kr { font-size: 11.5px; }
+      .brand-meta .en { font-size: 8.5px; }
+      .gnb-item { padding: 0 6.5px; font-size: 12px; height: 34px; }
+      .mode-switch-btn, .btn-header-compare, .btn-quote-cart, .btn-hotline { height: 32px; padding: 0 8px; font-size: 11px; gap: 4px; }
+      .btn-hotline .num { font-size: 12px; }
+    }
+    .mobile-menu-btn {
+      display: none;
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 7px;
+      border: 1.5px solid var(--ora-royal);
+      background: var(--ora-ice);
+      color: var(--ora-navy);
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .mobile-drawer {
+      display: none;
+      background: #fff;
+      border-top: 1px solid var(--grid-blue);
+      padding: 10px 16px;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .mobile-drawer.open { display: flex; }
+    .mobile-drawer button {
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--grid-blue);
+      background: var(--ora-ice);
+      color: var(--ora-navy);
+      font-size: 12.5px;
       font-weight: 800;
+      cursor: pointer;
     }
 
-    /* 3. INDUSTRIAL HERO + INTERACTIVE SPEC FINDER */
+    @media (max-width: 1180px) {
+      .brand-vline, .brand-meta .en { display: none; }
+      .gnb-item { padding: 0 7px; font-size: 12.5px; }
+    }
+    @media (max-width: 1020px) {
+      .gnb-nav { display: none; }
+      .mobile-menu-btn { display: inline-flex; align-items: center; }
+    }
+    @media (max-width: 680px) {
+      .btn-hotline .lbl, .mode-switch-btn span:last-child { display: none; }
+    }
+
+    /* 3. LUMINOUS ROYAL-BLUE HERO + INTERACTIVE ENGINEERING SPEC FINDER */
     .hero-wrap {
-      background: var(--ink);
+      background: linear-gradient(135deg, #07225A 0%, #0D388C 48%, #1652C7 100%);
       color: #fff;
-      border-bottom: 1px solid var(--grid-dark);
+      border-bottom: 2px solid #93C5FD;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
+        linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
     }
     .hero-grid {
+      position: relative;
+      z-index: 2;
       max-width: 1440px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      border-left: 1px solid var(--grid-dark);
-      border-right: 1px solid var(--grid-dark);
+      grid-template-columns: 1.18fr 0.96fr;
+      gap: 28px;
+      padding: 36px 24px 42px;
+      align-items: stretch;
     }
     @media (max-width: 1080px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .gnb-nav {
-        display: none;
-      }
+      .hero-grid { grid-template-columns: 1fr; padding: 28px 18px; }
     }
 
     .hero-left {
-      padding: 56px 48px;
-      border-right: 1px solid var(--grid-dark);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 32px;
+      gap: 22px;
     }
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-family: var(--mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #FBBF24;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-left: 3px solid var(--ora-red);
-      padding-left: 10px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #E0F2FE;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(186, 230, 253, 0.4);
+      padding: 5px 12px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
     }
     .hero-title {
-      font-size: clamp(30px, 3.4vw, 46px);
+      font-size: clamp(28px, 3.1vw, 44px);
       font-weight: 900;
-      line-height: 1.22;
+      line-height: 1.24;
       letter-spacing: -0.03em;
       color: #FFFFFF;
-      margin: 16px 0 18px;
+      margin: 14px 0 14px;
     }
     .hero-title span.accent {
-      color: #F87171;
-      border-bottom: 3px solid var(--ora-red);
+      color: #7DD3FC;
+      text-decoration: underline;
+      text-decoration-color: #38BDF8;
+      text-underline-offset: 6px;
     }
     .hero-lead {
-      font-size: 16px;
-      color: #D1D5DB;
-      line-height: 1.7;
+      font-size: 15px;
+      color: #DBEAFE;
+      line-height: 1.72;
       max-width: 640px;
     }
 
-    /* 히어로 실물 장비 스트립 */
+    /* 히어로 실물 장비 스트립 (밝고 깨끗한 화이트 카드) */
     .hero-equip-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--grid-dark);
-      border: 1px solid var(--grid-dark);
+      gap: 10px;
     }
     @media (max-width: 680px) {
-      .hero-equip-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .hero-equip-strip { grid-template-columns: repeat(2, 1fr); }
     }
     .equip-thumb-card {
-      background: #161A22;
-      padding: 12px;
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(191, 219, 254, 0.8);
+      border-radius: 10px;
+      padding: 10px;
       cursor: pointer;
-      transition: background 0.15s;
+      transition: transform 0.18s, box-shadow 0.18s;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: 0 8px 20px rgba(6, 29, 78, 0.22);
     }
     .equip-thumb-card:hover {
-      background: #1F2531;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(6, 29, 78, 0.34);
+      border-color: #38BDF8;
     }
     .equip-thumb-img {
-      height: 88px;
+      height: 80px;
       background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px;
-      margin-bottom: 8px;
+      padding: 4px;
+      margin-bottom: 6px;
     }
     .equip-thumb-img img {
       max-width: 100%;
@@ -373,80 +496,116 @@
     }
     .equip-code {
       font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 800;
-      color: #fff;
+      font-size: 12.5px;
+      font-weight: 900;
+      color: var(--ora-navy);
     }
     .equip-spec {
       font-size: 11px;
-      color: #9CA3AF;
+      color: #475569;
+      font-weight: 600;
+      line-height: 1.35;
     }
 
     /* 히어로 3열 신뢰 지표 바 */
     .hero-kpi-bar {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--grid-dark);
-      padding-top: 24px;
-      gap: 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(191, 219, 254, 0.28);
+      border-radius: 10px;
+      padding: 14px 16px;
+      gap: 16px;
+      backdrop-filter: blur(8px);
     }
     .kpi-item .num {
       font-family: var(--mono);
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 22px;
+      font-weight: 900;
       color: #FFFFFF;
     }
     .kpi-item .num small {
-      color: var(--ora-red);
-      font-size: 14px;
+      color: #7DD3FC;
+      font-size: 12px;
       margin-left: 3px;
     }
     .kpi-item .txt {
-      font-size: 12.5px;
-      color: #9CA3AF;
-      margin-top: 3px;
+      font-size: 12px;
+      color: #DBEAFE;
+      margin-top: 2px;
     }
 
-    /* 우측: 10초 모델 선정기 (QUICK SPEC FINDER) */
+    /* 우측: 밝은 화이트 엔지니어링 스펙 파인더 & 경사·배력 시뮬레이터 카드 */
     .hero-right {
-      padding: 40px 36px;
-      background: var(--ink-sub);
+      padding: 24px 24px 20px;
+      background: #FFFFFF;
+      color: var(--text-main);
+      border-radius: 14px;
+      border: 2px solid #93C5FD;
+      box-shadow: 0 22px 50px rgba(5, 24, 68, 0.35);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 20px;
+      gap: 14px;
+    }
+    .hero-tool-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: var(--ora-ice);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--grid-blue);
+    }
+    .hero-tool-tab {
+      padding: 8px 10px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .hero-tool-tab.active {
+      background: var(--ora-royal);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(15, 61, 153, 0.25);
     }
     .finder-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 1px solid var(--grid-dark);
-      padding-bottom: 14px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 10px;
+      gap: 8px;
     }
     .finder-title {
-      font-size: 18px;
+      font-size: 16.5px;
       font-weight: 900;
-      color: #fff;
+      color: var(--ora-navy);
     }
     .finder-sub {
-      font-size: 12px;
-      color: #9CA3AF;
+      font-size: 11.5px;
+      color: var(--text-muted);
       margin-top: 2px;
     }
     .finder-step {
-      margin-bottom: 14px;
+      margin-bottom: 11px;
     }
     .finder-step-label {
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
-      color: #E5E7EB;
-      margin-bottom: 6px;
+      color: var(--ora-navy);
+      margin-bottom: 5px;
     }
     .finder-step-label span.code {
       font-family: var(--mono);
-      color: #FBBF24;
+      color: var(--ora-blue);
     }
 
     .dir-toggle-grid {
@@ -455,91 +614,105 @@
       gap: 8px;
     }
     .dir-btn {
-      padding: 11px 12px;
-      background: #0F1115;
-      border: 1px solid #374151;
-      color: #D1D5DB;
-      font-size: 13px;
+      padding: 9px 11px;
+      background: #F8FAFC;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      color: #334155;
+      font-size: 12.5px;
       font-weight: 800;
       text-align: left;
       cursor: pointer;
       transition: all 0.15s;
     }
     .dir-btn.active {
-      background: rgba(200, 30, 30, 0.16);
-      border-color: var(--ora-red);
-      color: #fff;
+      background: var(--ora-ice);
+      border-color: var(--ora-blue);
+      color: var(--ora-navy);
+      box-shadow: inset 0 0 0 1px var(--ora-blue);
     }
     .dir-btn small {
       display: block;
-      font-size: 11px;
-      color: #9CA3AF;
-      font-weight: 500;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 600;
       margin-top: 2px;
     }
 
     .safety-interlock-alert {
-      background: rgba(245, 158, 11, 0.12);
-      border-left: 3px solid #F59E0B;
-      padding: 8px 10px;
-      font-size: 11.5px;
-      color: #FDE68A;
-      margin-top: 8px;
+      background: #EFF6FF;
+      border-left: 3px solid var(--ora-blue);
+      border-radius: 0 6px 6px 0;
+      padding: 7px 10px;
+      font-size: 11px;
+      color: #1E3A8A;
+      margin-top: 7px;
       line-height: 1.45;
     }
 
     .finder-select-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
     .f-select {
       width: 100%;
-      padding: 11px 12px;
-      background: #0F1115;
-      border: 1px solid #374151;
-      color: #fff;
-      font-size: 13px;
+      padding: 9px 10px;
+      background: #F8FAFC;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
     }
     .f-select:focus {
-      border-color: #FBBF24;
+      border-color: var(--ora-blue);
       outline: none;
     }
 
     .btn-finder-run {
       width: 100%;
-      padding: 14px 18px;
-      background: var(--ora-red);
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--ora-royal) 0%, var(--ora-blue) 100%);
       color: #fff;
       border: none;
-      font-size: 14.5px;
+      font-size: 13.5px;
       font-weight: 900;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.15s;
+      transition: filter 0.15s;
+      box-shadow: 0 6px 16px rgba(29, 78, 216, 0.25);
     }
-    .btn-finder-run:hover {
-      background: #A81616;
+    .btn-finder-run:hover { filter: brightness(1.08); }
+
+    /* 경사·마찰·도르래 역학 계산기 박스 */
+    .physics-result-box {
+      background: var(--ora-ice);
+      border: 1.5px solid var(--grid-blue);
+      border-radius: 8px;
+      padding: 11px 12px;
+      margin-bottom: 10px;
     }
 
-    /* 카본 AI 현장 맞춤 엔지니어 상담 박스 */
+    /* 카본 AI 현장 맞춤 엔지니어 상담 박스 (밝은 블루 에디션) */
     .carbon-consult-box {
-      background: #0F1115;
-      border: 1px solid #374151;
-      padding: 14px;
+      background: #F8FAFC;
+      border: 1.5px solid var(--grid-blue);
+      border-radius: 10px;
+      padding: 12px;
     }
     .carbon-consult-hdr {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      color: #60A5FA;
+      margin-bottom: 7px;
+      font-size: 11.5px;
+      font-weight: 900;
+      color: var(--ora-royal);
     }
     .carbon-input-row {
       display: flex;
@@ -547,50 +720,66 @@
     }
     .carbon-input {
       flex: 1;
-      background: #181C23;
-      border: 1px solid #374151;
-      color: #fff;
-      padding: 9px 11px;
-      font-size: 12.5px;
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 6px;
+      color: var(--text-main);
+      padding: 8px 10px;
+      font-size: 12px;
     }
+    .carbon-input:focus { border-color: var(--ora-blue); outline: none; }
     .carbon-btn {
-      background: #1D4ED8;
+      background: var(--ora-blue);
       color: #fff;
       border: none;
-      padding: 0 14px;
-      font-size: 12px;
+      border-radius: 6px;
+      padding: 0 12px;
+      font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
     }
+    .carbon-btn:hover { background: var(--ora-royal); }
+    .carbon-chip {
+      background: #FFFFFF;
+      border: 1px solid #BFDBFE;
+      border-radius: 99px;
+      color: var(--ora-royal);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .carbon-chip:hover { background: var(--ora-ice); border-color: var(--ora-blue); }
     .carbon-result {
-      margin-top: 10px;
+      margin-top: 9px;
       padding: 10px;
-      background: #161B26;
-      border: 1px solid #2563EB;
+      background: #FFFFFF;
+      border: 1.5px solid var(--ora-blue);
+      border-radius: 8px;
       font-size: 12px;
-      color: #E5E7EB;
+      color: var(--text-main);
       line-height: 1.6;
       display: none;
     }
 
-    /* 4. INDUSTRIAL GRID SECTIONS */
+    /* 4. ENTERPRISE ARCHITECTURAL SECTIONS */
     .section-wrap {
-      border-bottom: 1px solid var(--grid-line);
+      border-bottom: 1px solid #E2E8F0;
       background: var(--surface);
     }
     .section-wrap.white {
       background: var(--surface-pure);
     }
-    .section-Wrap-dark {
-      background: var(--ink);
-      color: #fff;
-      border-bottom: 1px solid var(--grid-dark);
+    .section-wrap-blue {
+      background: linear-gradient(180deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-bottom: 1px solid #BFDBFE;
     }
     .container {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 68px 24px;
+      padding: 64px 24px;
     }
     .sec-head {
       display: flex;
@@ -598,27 +787,27 @@
       align-items: flex-end;
       flex-wrap: wrap;
       gap: 16px;
-      margin-bottom: 36px;
-      padding-bottom: 18px;
-      border-bottom: 2px solid var(--ink);
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--ora-royal);
     }
     .sec-kicker {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
-      color: var(--ora-red);
+      color: var(--ora-blue);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 6px;
     }
     .sec-title {
-      font-size: clamp(24px, 2.5vw, 32px);
+      font-size: clamp(23px, 2.3vw, 31px);
       font-weight: 900;
-      color: var(--ink);
+      color: var(--ora-navy);
       letter-spacing: -0.03em;
     }
     .sec-desc {
-      font-size: 14.5px;
+      font-size: 14px;
       color: var(--text-body);
       max-width: 620px;
     }
@@ -627,115 +816,113 @@
     .cat-matrix {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      background: var(--grid-line);
-      border: 1px solid var(--grid-line);
+      gap: 12px;
     }
-    @media (max-width: 1180px) {
-      .cat-matrix {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 640px) {
-      .cat-matrix {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 1180px) { .cat-matrix { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .cat-matrix { grid-template-columns: 1fr; } }
     .matrix-cell {
       background: #fff;
-      padding: 24px 20px;
+      border: 1px solid #CBD5E1;
+      border-top: 4px solid var(--ora-royal);
+      border-radius: 10px;
+      padding: 20px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
-      transition: all 0.15s;
-      position: relative;
+      transition: transform 0.16s, box-shadow 0.16s, border-color 0.16s;
+      box-shadow: var(--shadow-sm);
     }
     .matrix-cell:hover {
-      background: #F8FAFC;
-      box-shadow: inset 0 4px 0 var(--ora-red);
+      transform: translateY(-4px);
+      border-color: var(--ora-blue);
+      box-shadow: var(--shadow-md);
     }
     .m-num {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      color: var(--text-muted);
-      margin-bottom: 10px;
+      color: var(--ora-sky);
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
     }
     .m-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
-      color: var(--ink);
+      color: var(--ora-navy);
       margin-bottom: 6px;
     }
     .m-spec-pill {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
-      background: #F3F4F6;
-      color: var(--ora-navy);
+      background: var(--ora-ice);
+      color: var(--ora-royal);
       padding: 3px 8px;
-      margin-bottom: 12px;
-      border-left: 2px solid var(--ora-navy);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--ora-blue);
     }
     .m-copy {
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--text-body);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       line-height: 1.55;
     }
     .m-foot {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
-      color: var(--ora-red);
+      color: var(--ora-blue);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 12px;
-      border-top: 1px solid #E5E7EB;
+      padding-top: 10px;
+      border-top: 1px solid #E2E8F0;
     }
 
     /* 6. FULL PRODUCT E-CATALOG & SMARTSTORE HYBRID GRID */
     .catalog-toolbar {
       background: #fff;
-      border: 1px solid var(--ink);
-      padding: 18px 20px;
-      margin-bottom: 24px;
+      border: 1.5px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
     }
     .cat-filter-tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--grid-line);
-      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 12px;
     }
     .c-tab {
-      padding: 9px 15px;
-      background: var(--surface);
-      border: 1px solid var(--grid-line);
-      font-size: 13px;
+      padding: 8px 13px;
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      border-radius: 7px;
+      font-size: 12.5px;
       font-weight: 800;
       color: var(--text-main);
       cursor: pointer;
       transition: all 0.12s;
+      white-space: nowrap;
     }
-    .c-tab:hover {
-      border-color: var(--ink);
-    }
+    .c-tab:hover { border-color: var(--ora-blue); color: var(--ora-blue); }
     .c-tab.active {
-      background: var(--ink);
+      background: var(--ora-royal);
       color: #fff;
-      border-color: var(--ink);
+      border-color: var(--ora-royal);
+      box-shadow: 0 3px 10px rgba(15, 61, 153, 0.25);
     }
     .c-tab .cnt {
       font-family: var(--mono);
       font-size: 11px;
-      margin-left: 5px;
-      opacity: 0.75;
+      margin-left: 4px;
+      opacity: 0.85;
     }
 
     .sub-filter-row {
@@ -743,7 +930,7 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
     .cap-chip-group {
       display: flex;
@@ -755,90 +942,126 @@
       padding: 5px 11px;
       font-size: 12px;
       font-weight: 700;
-      background: #F3F4F6;
-      border: 1px solid #D1D5DB;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
       color: var(--text-body);
       cursor: pointer;
+      white-space: nowrap;
     }
     .cap-chip.active {
-      background: #FEF2F2;
-      border-color: var(--ora-red);
-      color: var(--ora-red);
+      background: var(--ora-ice);
+      border-color: var(--ora-blue);
+      color: var(--ora-royal);
       font-weight: 900;
     }
 
     .search-view-group {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       flex-wrap: wrap;
     }
     .search-input {
-      width: 290px;
-      height: 38px;
+      width: 260px;
+      height: 36px;
       padding: 0 12px;
-      border: 1.5px solid var(--ink);
-      font-size: 13px;
+      border: 1.5px solid #93C5FD;
+      border-radius: 7px;
+      font-size: 12.5px;
       font-weight: 700;
     }
-    .view-btn {
-      height: 38px;
-      padding: 0 14px;
-      font-size: 12.5px;
-      font-weight: 800;
-      border: 1px solid var(--ink);
+    .search-input:focus { outline: none; border-color: var(--ora-blue); }
+    .sort-select {
+      height: 36px;
+      padding: 0 10px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
       background: #fff;
+      color: var(--text-main);
       cursor: pointer;
     }
+    .view-btn {
+      height: 36px;
+      padding: 0 13px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1.5px solid var(--ora-royal);
+      border-radius: 7px;
+      background: #fff;
+      color: var(--ora-royal);
+      cursor: pointer;
+      white-space: nowrap;
+    }
     .view-btn.active {
-      background: var(--ora-navy);
+      background: var(--ora-royal);
       color: #fff;
-      border-color: var(--ora-navy);
     }
 
-    /* 제품 그리드 (1px 정밀 엔지니어링 카드) */
+    /* 제품 그리드 (정밀 블루 엔지니어링 카드) */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
       gap: 16px;
     }
     .prod-card {
       background: #fff;
-      border: 1px solid var(--grid-line);
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: transform 0.16s, border-color 0.16s, box-shadow 0.16s;
+      box-shadow: var(--shadow-sm);
     }
     .prod-card:hover {
-      border-color: var(--ink);
-      box-shadow: 0 10px 24px rgba(15, 17, 21, 0.08);
+      transform: translateY(-2px);
+      border-color: var(--ora-blue);
+      box-shadow: var(--shadow-md);
     }
     .prod-top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 14px;
-      background: #F9FAFB;
-      border-bottom: 1px solid #E5E7EB;
+      padding: 8px 13px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
       font-size: 11px;
       font-weight: 800;
     }
-    .prod-cat-label {
-      color: var(--ora-navy);
+    .prod-cat-label { color: var(--ora-royal); }
+    .prod-top-actions { display: flex; align-items: center; gap: 6px; }
+    .btn-cmp-mini {
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #CBD5E1;
+      background: #fff;
+      color: var(--text-muted);
+      font-size: 10.5px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-cmp-mini.active {
+      background: var(--ora-blue);
+      border-color: var(--ora-blue);
+      color: #fff;
     }
     .prod-stock-label {
       color: var(--signal-green);
       font-family: var(--mono);
     }
     .prod-img-wrap {
-      height: 200px;
+      height: 195px;
       padding: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #fff;
-      border-bottom: 1px solid #F3F4F6;
+      border-bottom: 1px solid #F1F5F9;
       cursor: pointer;
       position: relative;
     }
@@ -848,30 +1071,29 @@
       object-fit: contain;
       transition: transform 0.2s;
     }
-    .prod-card:hover .prod-img-wrap img {
-      transform: scale(1.04);
-    }
+    .prod-card:hover .prod-img-wrap img { transform: scale(1.04); }
     .prod-cap-badge {
       position: absolute;
       bottom: 10px;
       right: 10px;
-      background: var(--ink);
+      background: var(--ora-navy);
       color: #fff;
+      border-radius: 5px;
       font-family: var(--mono);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       padding: 3px 8px;
     }
 
     .prod-body {
-      padding: 16px;
+      padding: 15px;
       cursor: pointer;
     }
     .prod-series {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
     .prod-code-row {
       display: flex;
@@ -881,31 +1103,31 @@
     }
     .prod-code {
       font-family: var(--mono);
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--ink);
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--ora-navy);
     }
     .prod-price {
       font-family: var(--mono);
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--ora-red);
+      font-size: 14.5px;
+      font-weight: 900;
+      color: var(--ora-blue);
     }
 
     .prod-spec-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      border-top: 1px solid #E5E7EB;
+      border-top: 1px solid #E2E8F0;
     }
     .prod-spec-table td {
       padding: 5px 0;
-      border-bottom: 1px solid #F3F4F6;
+      border-bottom: 1px solid #F1F5F9;
     }
     .prod-spec-table td.k {
       color: var(--text-muted);
       font-weight: 600;
-      width: 78px;
+      width: 72px;
     }
     .prod-spec-table td.v {
       font-family: var(--mono);
@@ -917,50 +1139,47 @@
     .prod-foot {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-top: 1px solid var(--grid-line);
+      border-top: 1px solid #E2E8F0;
     }
     .prod-foot.npay-mode {
-      grid-template-columns: 1fr 1fr 1.15fr;
+      grid-template-columns: 1fr 1fr 1.1fr;
     }
     .pf-btn {
-      padding: 11px 8px;
+      padding: 11px 6px;
       border: none;
       background: #fff;
+      color: var(--ora-navy);
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
-      border-right: 1px solid var(--grid-line);
+      border-right: 1px solid #E2E8F0;
       transition: background 0.15s;
+      white-space: nowrap;
     }
-    .pf-btn:last-child {
-      border-right: none;
-    }
-    .pf-btn:hover {
-      background: #F3F4F6;
-    }
+    .pf-btn:last-child { border-right: none; }
+    .pf-btn:hover { background: var(--ora-ice); }
     .pf-btn.quote {
-      background: var(--ora-navy);
+      background: var(--ora-royal);
       color: #fff;
     }
-    .pf-btn.quote:hover {
-      background: #002B8F;
-    }
+    .pf-btn.quote:hover { background: var(--ora-blue); }
     .pf-btn.npay {
       background: var(--npay-green);
       color: #fff;
     }
-    .pf-btn.npay:hover {
-      background: #02b150;
-    }
+    .pf-btn.npay:hover { background: #02B150; }
 
     /* 시리즈 통합 제원표 테이블 */
     .series-block {
       background: #fff;
-      border: 1px solid var(--ink);
-      margin-bottom: 20px;
+      border: 1.5px solid #BFDBFE;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
     }
     .series-block-hdr {
-      background: var(--ink);
+      background: linear-gradient(90deg, var(--ora-navy), var(--ora-royal));
       color: #fff;
       padding: 12px 18px;
       display: flex;
@@ -973,60 +1192,55 @@
       font-size: 13px;
     }
     .eng-table th {
-      background: #F3F4F6;
-      color: var(--ink);
+      background: var(--ora-ice);
+      color: var(--ora-navy);
       font-weight: 800;
       padding: 10px 14px;
       text-align: left;
-      border-bottom: 1px solid var(--grid-line);
+      border-bottom: 1px solid #BFDBFE;
     }
     .eng-table td {
       padding: 10px 14px;
-      border-bottom: 1px solid #E5E7EB;
+      border-bottom: 1px solid #E2E8F0;
     }
-    .eng-table tr:hover {
-      background: #F8FAFC;
-    }
+    .eng-table tr:hover { background: #F8FAFC; }
 
-    /* 7. WHY ORATECH (4대 엔지니어링 검증 기준) */
+    /* 7. WHY ORATECH (밝은 로얄블루 & 화이트 4대 엔지니어링 검증) */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--grid-dark);
-      border: 1px solid var(--grid-dark);
+      gap: 14px;
     }
-    @media (max-width: 1024px) {
-      .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 640px) {
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 1024px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .why-grid { grid-template-columns: 1fr; } }
     .why-card {
-      background: #151921;
-      padding: 28px 24px;
+      background: #FFFFFF;
+      border: 1px solid #BFDBFE;
+      border-top: 4px solid var(--ora-blue);
+      border-radius: 10px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow-sm);
     }
     .why-idx {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      color: var(--ora-red);
-      margin-bottom: 10px;
+      color: var(--ora-blue);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .why-card h3 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
-      color: #fff;
+      color: var(--ora-navy);
       margin-bottom: 10px;
-      line-height: 1.35;
+      line-height: 1.38;
     }
     .why-card p {
-      font-size: 13.5px;
-      color: #9CA3AF;
+      font-size: 13px;
+      color: var(--text-body);
       line-height: 1.65;
     }
 
@@ -1034,26 +1248,21 @@
     .pkg-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 18px;
     }
-    @media (max-width: 920px) {
-      .pkg-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 920px) { .pkg-grid { grid-template-columns: 1fr; } }
     .pkg-card {
       background: #fff;
-      border: 1px solid var(--ink);
+      border: 1.5px solid #BFDBFE;
+      border-radius: 12px;
+      overflow: hidden;
       display: grid;
       grid-template-columns: 220px 1fr;
+      box-shadow: var(--shadow-sm);
     }
-    @media (max-width: 600px) {
-      .pkg-card {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 600px) { .pkg-card { grid-template-columns: 1fr; } }
     .pkg-img {
-      background: #0F1115;
+      background: var(--ora-navy);
       position: relative;
       min-height: 220px;
       overflow: hidden;
@@ -1062,64 +1271,85 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.88;
+      opacity: 0.92;
     }
     .pkg-tag {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--ora-red);
+      top: 10px;
+      left: 10px;
+      background: rgba(7, 34, 90, 0.92);
+      border: 1px solid #38BDF8;
       color: #fff;
+      border-radius: 5px;
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
       padding: 3px 8px;
     }
     .pkg-content {
-      padding: 22px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
     .pkg-title {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 900;
-      color: var(--ink);
+      color: var(--ora-navy);
       margin-bottom: 6px;
     }
     .pkg-list {
       list-style: none;
-      margin: 10px 0 16px;
+      margin: 8px 0 14px;
       font-size: 13px;
       color: var(--text-body);
     }
     .pkg-list li {
-      padding: 3px 0;
-      border-bottom: 1px dashed #E5E7EB;
+      padding: 4px 0;
+      border-bottom: 1px dashed #E2E8F0;
     }
 
     /* 9. CHEONGGYECHEON HQ & A/S TRUST SECTION */
     .hq-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
+      gap: 24px;
     }
-    @media (max-width: 960px) {
-      .hq-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 960px) { .hq-grid { grid-template-columns: 1fr; } }
     .hq-box {
       background: #fff;
-      border: 1px solid var(--ink);
-      padding: 32px;
+      border: 1.5px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
     }
 
-    /* 10. MODALS (PDP 하이브리드 상세모달 & 직인 견적서 인쇄 모달) */
+    /* 하단 플로팅 비교 도크 */
+    .compare-dock {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 750;
+      background: linear-gradient(90deg, #07225A, #1652C7);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1.5px solid #7DD3FC;
+      box-shadow: 0 14px 34px rgba(7, 34, 90, 0.35);
+      display: none;
+      align-items: center;
+      gap: 12px;
+      max-width: 94vw;
+      white-space: nowrap;
+    }
+    .compare-dock.show { display: flex; }
+
+    /* 10. MODALS */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15, 17, 21, 0.76);
+      background: rgba(7, 34, 90, 0.65);
       backdrop-filter: blur(4px);
       z-index: 1000;
       display: none;
@@ -1129,17 +1359,18 @@
     }
     .modal-window {
       background: #fff;
-      border: 2px solid var(--ink);
+      border: 2px solid var(--ora-royal);
+      border-radius: 12px;
       width: 1080px;
       max-width: 96vw;
       max-height: 92vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 25px 60px rgba(7, 34, 90, 0.38);
     }
     .modal-top {
-      background: var(--ink);
+      background: linear-gradient(90deg, var(--ora-navy), var(--ora-royal));
       color: #fff;
       padding: 14px 22px;
       display: flex;
@@ -1148,7 +1379,7 @@
       font-weight: 800;
     }
     .modal-body {
-      padding: 26px;
+      padding: 24px;
       overflow-y: auto;
       flex: 1;
     }
@@ -1160,18 +1391,15 @@
       left: 0;
       right: 0;
       z-index: 800;
-      background: var(--ink);
-      border-top: 2px solid var(--ora-red);
+      background: var(--ora-navy);
+      border-top: 2px solid #38BDF8;
       display: none;
       grid-template-columns: 1fr 1fr 1fr;
     }
     @media (max-width: 860px) {
-      .mobile-action-bar {
-        display: grid;
-      }
-      body {
-        padding-bottom: 60px;
-      }
+      .mobile-action-bar { display: grid; }
+      body { padding-bottom: 56px; }
+      .compare-dock { bottom: 62px; }
     }
     .mab-btn {
       padding: 12px 6px;
@@ -1180,7 +1408,7 @@
       font-size: 12px;
       font-weight: 800;
       text-decoration: none;
-      border-right: 1px solid var(--grid-dark);
+      border-right: 1px solid rgba(255,255,255,0.18);
       background: transparent;
       border-top: none;
       border-bottom: none;
@@ -1189,10 +1417,10 @@
     }
 
     footer.site-footer {
-      background: #090B0E;
-      color: #9CA3AF;
-      border-top: 3px solid var(--ora-red);
-      padding: 56px 24px;
+      background: linear-gradient(135deg, #061B49 0%, #0A2E7A 100%);
+      color: #CBD5E1;
+      border-top: 3px solid #38BDF8;
+      padding: 48px 24px;
       font-size: 13px;
     }
     .footer-inner {
@@ -1200,21 +1428,13 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
+      gap: 36px;
     }
-    @media (max-width: 860px) {
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr; } }
 
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      #officialQuotePrintModal, #officialQuotePrintModal * {
-        visibility: visible;
-      }
+      body * { visibility: hidden; }
+      #officialQuotePrintModal, #officialQuotePrintModal * { visibility: visible; }
       #officialQuotePrintModal {
         position: absolute;
         left: 0;
@@ -1222,95 +1442,111 @@
         width: 100%;
         background: #fff;
       }
-      .no-print {
-        display: none !important;
-      }
+      .no-print { display: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. TOP ENGINEERING UTILITY BAR -->
+  <!-- 1. TOP CORPORATE BLUE UTILITY BAR -->
   <div class="utility-bar">
     <div class="utility-inner">
       <div class="u-left">
-        <span><i class="status-dot"></i><b>당일 화물·택배 출고 가동중</b> (평일 15:00 이전 발주 건 경동·대신화물/택배 즉시 상차)</span>
+        <span><i class="status-dot"></i><b>평일 15:00 이전 발주 당일출고</b> <span class="u-hide-md">· 경동/대신화물·택배 즉시 상차</span></span>
         <span class="u-divider">|</span>
-        <span>청계천 본사 직영 전시장·A/S 센터 (서울특별시 중구 청계천로 110, 1층)</span>
+        <span class="u-hide-md">청계천 본사 직영 전시장·A/S센터 (서울 중구 청계천로 110)</span>
       </div>
       <div class="u-right">
-        <span class="u-link" onclick="scrollToSec('sec-catalog')">전자 카탈로그 (132종+)</span>
+        <span class="u-link" onclick="scrollToSec('sec-catalog')">전자카탈로그 (<span class="js-model-count">132</span>종)</span>
         <span class="u-divider">|</span>
-        <span class="u-link" onclick="openInstantOfficialQuote('PCW-5000')">법인·관공서(G2B) 직인 견적서 즉시발행</span>
+        <span class="u-link" onclick="openInstantOfficialQuote('PCW-5000')">관공서 직인견적서 1초발행</span>
         <span class="u-divider">|</span>
-        <a href="https://igan3w.github.io/erp/" target="_blank" class="u-link">ERP 연동시스템 ↗</a>
+        <a href="https://igan3w.github.io/studio/" target="_blank" class="u-link">AI 스튜디오</a>
+        <span class="u-divider">|</span>
+        <a href="https://igan3w.github.io/erp/" target="_blank" class="u-link">ERP 연동 ↗</a>
       </div>
     </div>
   </div>
 
-  <!-- 2. STICKY PRECISION GNB HEADER -->
-  <header class="site-header">
+  <!-- 2. STICKY PRECISION GNB HEADER (CLEAN SINGLE-ROW) -->
+  <header class="site-header" id="top">
     <div class="header-inner">
       <a href="#top" class="brand-box">
         <img id="hdrLogoImg" src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="(주)오라테크 ORATECH" class="brand-logo" />
         <div class="brand-vline"></div>
         <div class="brand-meta">
-          <span class="en">INDUSTRIAL WINCH &amp; HOIST SYSTEMS</span>
-          <span class="kr">주식회사 오라테크 · www.orawinch.com</span>
+          <span class="en">INDUSTRIAL WINCH &amp; HOIST</span>
+          <span class="kr">(주)오라테크 · orawinch.com</span>
         </div>
       </a>
 
       <nav class="gnb-nav">
         <button type="button" class="gnb-item active" onclick="scrollToSec('sec-finder')">스펙 파인더</button>
-        <button type="button" class="gnb-item" onclick="scrollToSec('sec-matrix')">제품 라인업</button>
-        <button type="button" class="gnb-item" onclick="scrollToSec('sec-catalog')">전 모델 제원표</button>
-        <button type="button" class="gnb-item" onclick="scrollToSec('sec-packages')">현장별 표준세팅</button>
-        <button type="button" class="gnb-item" onclick="scrollToSec('sec-why')">기술검증·직영A/S</button>
-        <button type="button" class="gnb-item" onclick="scrollToSec('sec-hq')">회사소개·오시는길</button>
+        <button type="button" class="gnb-item" onclick="scrollToSec('sec-matrix')">주력 라인업</button>
+        <button type="button" class="gnb-item" onclick="scrollToSec('sec-catalog')">전모델 제원표</button>
+        <button type="button" class="gnb-item" onclick="scrollToSec('sec-packages')">현장 패키지</button>
+        <button type="button" class="gnb-item" onclick="scrollToSec('sec-why')">기술검증·A/S</button>
+        <button type="button" class="gnb-item" onclick="scrollToSec('sec-hq')">본사·문의</button>
       </nav>
 
       <div class="header-actions">
-        <button type="button" id="commerceModeToggleBtn" class="mode-switch-btn npay-active" onclick="toggleCommerceMode()" title="B2B 기업 카탈로그 모드와 네이버 스마트스토어 N-Pay 결제 연동 모드를 즉시 전환합니다">
+        <button type="button" id="commerceModeToggleBtn" class="mode-switch-btn npay-active" onclick="toggleCommerceMode()" title="B2B 기업 카탈로그 모드와 네이버 스마트스토어 N-Pay 결제 모드를 전환합니다">
           <span class="mode-badge" id="commerceModeBadge">N Pay ON</span>
-          <span id="commerceModeLabel">스마트스토어 하이브리드 모드</span>
+          <span id="commerceModeLabel">스토어 연동</span>
+        </button>
+
+        <button type="button" id="headerCompareBtn" class="btn-header-compare" onclick="openCompareModal()" title="선택한 모델의 제원을 나란히 비교합니다">
+          <span>비교</span>
+          <span class="mono" id="headerCompareCount">0/3</span>
         </button>
 
         <button type="button" class="btn-quote-cart" onclick="openQuoteCartModal()">
-          <span>견적서함</span>
+          <span>견적함</span>
           <span class="cart-count" id="headerCartCount">0</span>
         </button>
 
         <a href="tel:1600-5157" class="btn-hotline">
-          <span class="lbl">기술영업·긴급출고 직통</span>
+          <span class="lbl">기술상담</span>
           <span class="num">1600-5157</span>
         </a>
+
+        <button type="button" class="mobile-menu-btn" onclick="toggleMobileNav()">메뉴</button>
       </div>
+    </div>
+
+    <div id="mobileDrawer" class="mobile-drawer">
+      <button type="button" onclick="scrollToSec('sec-finder');toggleMobileNav()">스펙 파인더</button>
+      <button type="button" onclick="scrollToSec('sec-matrix');toggleMobileNav()">주력 라인업</button>
+      <button type="button" onclick="scrollToSec('sec-catalog');toggleMobileNav()">전모델 제원표</button>
+      <button type="button" onclick="scrollToSec('sec-packages');toggleMobileNav()">현장 패키지</button>
+      <button type="button" onclick="scrollToSec('sec-why');toggleMobileNav()">기술검증·A/S</button>
+      <button type="button" onclick="scrollToSec('sec-hq');toggleMobileNav()">본사·문의</button>
     </div>
   </header>
 
-  <!-- 3. INDUSTRIAL HERO + 10-SECOND SPEC FINDER -->
+  <!-- 3. ROYAL-BLUE INDUSTRIAL HERO + 10-SECOND SPEC FINDER -->
   <section class="hero-wrap" id="sec-finder">
     <div class="hero-grid">
       <!-- 좌측: 핵심 엔지니어링 메시지 & 실물 라인업 -->
       <div class="hero-left">
         <div>
-          <div class="hero-tag">SINCE CHUNGGYECHEON · INDUSTRIAL LIFTING &amp; PULLING STANDARD</div>
+          <div class="hero-tag">CHUNGGYECHEON HQ · INDUSTRIAL WINCH &amp; HOIST STANDARD</div>
           <h1 class="hero-title">
-            하중은 타협하지 않습니다.<br />
-            현장 조건에 정확히 맞물리는<br />
-            산업용 윈치 표준, <span class="accent">오라테크.</span>
+            현장 하중은 타협하지 않습니다.<br />
+            작업 조건에 정확히 맞물리는<br />
+            산업용 윈치 표준, <span class="accent">주식회사 오라테크.</span>
           </h1>
           <p class="hero-lead">
-            캐나다 포터블 엔진·배터리 캡스턴 윈치부터 AC 220V·380V 산업용 전동윈치, 호이스트, 특장차용 DC 12V·24V 윈치, 유압 스태커까지.
-            허수 없는 1단 정격 하중 검증과 청계천 본사 직영 모터·브레이크 부품 수급으로 현장의 멈춤을 원천 차단합니다.
+            무전원 캐나다 혼다 엔진·배터리 캡스턴 윈치부터 AC 220V/380V 전동윈치, 체인호이스트, 특장차 DC 윈치, 유압 스태커까지.
+            허수 없는 1단 정격 하중 검증과 청계천 본사 직영 부품·모터 정비로 현장의 멈춤을 원천 차단합니다.
           </p>
         </div>
 
         <!-- 대표 실물 장비 4종 퀵 쇼케이스 -->
         <div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12px;color:#9CA3AF;">
-            <span class="mono">FLAGSHIP LINEUP · CLICK FOR FULL CAD &amp; SPEC SHEET</span>
-            <span>실물 클릭 시 층수별 견인력·도면·견적서 즉시 확인</span>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12px;color:#DBEAFE;">
+            <span class="mono" style="font-weight:800;">FLAGSHIP LINEUP · CLICK FOR CAD &amp; SPEC SHEET</span>
+            <span>실물 클릭 시 층수별 견인력·도면·직인견적서 즉시 확인</span>
           </div>
           <div class="hero-equip-strip">
             <div class="equip-thumb-card" onclick="openProductDetailByCode('PCW-5000')">
@@ -1318,14 +1554,14 @@
                 <img src="https://igan3w.github.io/studio/ora_assets/PCW5000-Collection.jpg" alt="PCW-5000" />
               </div>
               <div class="equip-code">PCW-5000</div>
-              <div class="equip-spec">혼다 4행정 · 로프 무제한 · 복선 2~5톤</div>
+              <div class="equip-spec">혼다 4행정 · 무제한 · 배력 5톤</div>
             </div>
             <div class="equip-thumb-card" onclick="openProductDetailByCode('PCW-3000LI')">
               <div class="equip-thumb-img">
                 <img src="https://igan3w.github.io/studio/ora_assets/PCW3000Li-Collection.jpg" alt="PCW-3000LI" />
               </div>
               <div class="equip-code">PCW-3000LI</div>
-              <div class="equip-spec">82V 배터리 · 매연 ZERO · 9.5kg</div>
+              <div class="equip-spec">82V 배터리 · 무매연 · 9.5kg</div>
             </div>
             <div class="equip-thumb-card" onclick="openProductDetailByCode('DU-250')">
               <div class="equip-thumb-img">
@@ -1339,7 +1575,7 @@
                 <img src="https://igan3w.github.io/studio/ora_assets/CP-200.jpg" alt="CP-500" />
               </div>
               <div class="equip-code">COMEUP CP/CWG</div>
-              <div class="equip-spec">산업·건설 중하중 200kg~10Ton</div>
+              <div class="equip-spec">산업·플랜트 200kg~10Ton</div>
             </div>
           </div>
         </div>
@@ -1347,98 +1583,145 @@
         <!-- 3열 신뢰 지표 -->
         <div class="hero-kpi-bar">
           <div class="kpi-item">
-            <div class="num">132<small>+ MODELS</small></div>
-            <div class="txt">전압·하중별 개별 분해 제원표 100% 공개</div>
+            <div class="num"><span class="js-model-count">132</span><small>MODELS</small></div>
+            <div class="txt">전압·하중별 개별 제원표 100% 공개</div>
           </div>
           <div class="kpi-item">
             <div class="num">15:00<small>SAME-DAY</small></div>
-            <div class="txt">청계천 본사 직영 물류 · 경동/대신화물 당일발송</div>
+            <div class="txt">청계천 본사 직영 · 화물/택배 당일발송</div>
           </div>
           <div class="kpi-item">
             <div class="num">100<small>% PARTS</small></div>
-            <div class="txt">모터·감속기·마그네틱 브레이크·기어 직영 수리</div>
+            <div class="txt">모터·감속기·브레이크 청계천 직영 정비</div>
           </div>
         </div>
       </div>
 
-      <!-- 우측: 10초 엔지니어링 스펙 파인더 & 카본 AI 설비 설계기 -->
+      <!-- 우측: 10초 모델 선정기 + 경사각·배력 역학 계산기 + 카본 AI -->
       <div class="hero-right">
         <div>
           <div class="finder-header">
             <div>
-              <div class="finder-title">10초 엔지니어링 모델 선정기 (Quick Spec Finder)</div>
-              <div class="finder-sub">작업 방향·현장 전원·목표 하중을 선택하면 안전율을 충족하는 기종만 압축합니다.</div>
+              <div class="finder-title">엔지니어링 모델 선정 &amp; 하중 시뮬레이터</div>
+              <div class="finder-sub">현장 전원·경사각·안전여유율(1.5x)을 계산해 정확한 기종을 압축합니다.</div>
             </div>
-            <span class="mono" style="background:#C81E1E;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;">SAFETY FACTOR 1.5x</span>
+            <span class="mono" style="background:#EFF6FF;border:1px solid #93C5FD;color:#0F3D99;font-size:10.5px;font-weight:900;padding:3px 8px;border-radius:5px;white-space:nowrap;">SAFETY 1.5x</span>
           </div>
 
-          <div class="finder-step" style="margin-top:16px;">
-            <div class="finder-step-label">
-              <span>STEP 01. 작업 방향 (안전 제동 메커니즘 구분)</span>
-              <span class="code" id="finderDirCode">PULLING / LIFTING</span>
-            </div>
-            <div class="dir-toggle-grid">
-              <button type="button" class="dir-btn active" id="dirBtnAll" onclick="setFinderDirection('ALL')">
-                전체 작업 (견인 + 인양)
-                <small>전 라인업 통합 검색</small>
-              </button>
-              <button type="button" class="dir-btn" id="dirBtnLift" onclick="setFinderDirection('LIFT')">
-                수직 인양 (공중 매달기) 전용
-                <small>전자식/기계식 자동 브레이크 필수</small>
-              </button>
-            </div>
-            <div class="safety-interlock-alert" id="safetyInterlockBox">
-              ⚠️ <b>[엔지니어링 안전 경고]</b> 수평 견인 전용 차량용 클러치 윈치는 공중 수직 인양(호이스트 대용)으로 절대 사용할 수 없습니다. 수직 작업 시 반드시 마그네틱/기계식 브레이크 내장형 모델을 선정하십시오.
-            </div>
+          <div class="hero-tool-tabs" style="margin:10px 0 12px;">
+            <button type="button" id="heroTabFinderBtn" class="hero-tool-tab active" onclick="switchHeroToolMode('finder')">10초 스펙 파인더</button>
+            <button type="button" id="heroTabPhysicsBtn" class="hero-tool-tab" onclick="switchHeroToolMode('physics')">경사·도르래 하중계산기</button>
           </div>
 
-          <div class="finder-step">
-            <div class="finder-step-label">
-              <span>STEP 02. 현장 가용 전원 및 장비 분류</span>
-              <span class="code">POWER SOURCE</span>
+          <!-- 모드 A: 10초 스펙 파인더 -->
+          <div id="heroPanelFinder">
+            <div class="finder-step">
+              <div class="finder-step-label">
+                <span>STEP 01. 작업 방향 (안전 제동 메커니즘 구분)</span>
+                <span class="code" id="finderDirCode">PULLING / LIFTING</span>
+              </div>
+              <div class="dir-toggle-grid">
+                <button type="button" class="dir-btn active" id="dirBtnAll" onclick="setFinderDirection('ALL')">
+                  전체 작업 (견인 + 인양)
+                  <small>전 라인업 통합 검색</small>
+                </button>
+                <button type="button" class="dir-btn" id="dirBtnLift" onclick="setFinderDirection('LIFT')">
+                  수직 인양 (공중 매달기) 전용
+                  <small>전자식/기계식 자동 브레이크 필수</small>
+                </button>
+              </div>
+              <div class="safety-interlock-alert" id="safetyInterlockBox">
+                <b>[안전 인터락 기준]</b> 수평 견인 전용 차량 클러치 윈치는 공중 수직 인양에 사용할 수 없습니다. 수직 양중 시 브레이크 내장 기종을 선택하십시오.
+              </div>
             </div>
-            <div class="finder-select-grid">
-              <select id="finderCatSel" class="f-select" onchange="updateFinderPreviewCount()">
-                <option value="ALL">전체 장비 분류 (132종+)</option>
-                <option value="엔진윈치">무전원 혼다엔진 / 82V 배터리 윈치</option>
-                <option value="전동윈치">AC 220V 단상 / 380V 삼상 전동윈치</option>
-                <option value="미니/특수윈치">AC 220V 경량 미니윈치 (YT/FY/KIO/DU)</option>
-                <option value="호이스트">AC 단상/삼상 전동 체인호이스트</option>
-                <option value="수동/DC/유압윈치">차량용 DC 12V·24V / 수동 핸드윈치</option>
-                <option value="수동하역제품">무전원 체인블럭·레바블럭·영구자석</option>
-                <option value="운반하역유압">전동/수동 유압스태커 · 고소작업대</option>
-              </select>
 
-              <select id="finderCapSel" class="f-select" onchange="updateFinderPreviewCount()">
-                <option value="ALL">필요 하중 전체 (여유율 1.5배 권장)</option>
-                <option value="LIGHT">~ 250 kg 이하 (경량 자재/소형)</option>
-                <option value="MID">300 kg ~ 500 kg (표준 건설/설비)</option>
-                <option value="HEAVY1">700 kg ~ 1,500 kg (산림/전력/주력)</option>
-                <option value="HEAVY2">2 Ton ~ 10 Ton 이상 (고하중 플랜트)</option>
-              </select>
+            <div class="finder-step">
+              <div class="finder-step-label">
+                <span>STEP 02. 현장 가용 전원 및 요구 하중</span>
+                <span class="code">POWER &amp; LOAD</span>
+              </div>
+              <div class="finder-select-grid">
+                <select id="finderCatSel" class="f-select" onchange="updateFinderPreviewCount()">
+                  <option value="ALL">전체 장비 분류</option>
+                  <option value="엔진윈치">무전원 혼다엔진 / 82V 배터리</option>
+                  <option value="전동윈치">AC 220V 단상 / 380V 삼상</option>
+                  <option value="미니/특수윈치">AC 220V 경량 미니 (YT/KIO/DU)</option>
+                  <option value="호이스트">AC 전동 체인호이스트</option>
+                  <option value="수동/DC/유압윈치">차량용 DC 12V·24V / 수동</option>
+                  <option value="수동하역제품">무전원 체인블럭·레바·자석</option>
+                  <option value="운반하역유압">전동/수동 유압스태커·고소대</option>
+                </select>
+
+                <select id="finderCapSel" class="f-select" onchange="updateFinderPreviewCount()">
+                  <option value="ALL">필요 하중 전체</option>
+                  <option value="LIGHT">~ 250 kg 이하 (경량)</option>
+                  <option value="MID">300 kg ~ 500 kg (표준)</option>
+                  <option value="HEAVY1">700 kg ~ 1,500 kg (주력)</option>
+                  <option value="HEAVY2">2 Ton ~ 10 Ton+ (중량)</option>
+                </select>
+              </div>
             </div>
+
+            <button type="button" class="btn-finder-run" onclick="executeQuickFinder()">
+              <span>조건 부합 정품 모델 즉시 필터링</span>
+              <span class="mono" id="finderMatchCountBadge">132 MODELS →</span>
+            </button>
           </div>
 
-          <button type="button" class="btn-finder-run" onclick="executeQuickFinder()">
-            <span>조건에 부합하는 정품 모델 즉시 필터링</span>
-            <span class="mono" id="finderMatchCountBadge">132 MODELS →</span>
-          </button>
+          <!-- 모드 B: 현장 경사·마찰·도르래 역학 시뮬레이터 -->
+          <div id="heroPanelPhysics" style="display:none;">
+            <div class="finder-select-grid" style="margin-bottom:8px;">
+              <div>
+                <label class="finder-step-label"><span>대상 화물 중량 (kg)</span></label>
+                <input type="number" id="phyWeight" class="f-select" value="1200" min="50" step="50" oninput="calcFieldPhysics()" />
+              </div>
+              <div>
+                <label class="finder-step-label"><span>작업 경사각 (0°평지~90°수직)</span></label>
+                <input type="number" id="phySlope" class="f-select" value="30" min="0" max="90" oninput="calcFieldPhysics()" />
+              </div>
+              <div>
+                <label class="finder-step-label"><span>바닥 마찰 계수 (μ)</span></label>
+                <select id="phyFriction" class="f-select" onchange="calcFieldPhysics()">
+                  <option value="0.08">바퀴/레일 대차 (μ=0.08)</option>
+                  <option value="0.20">매끈한 철판·콘크리트 (μ=0.20)</option>
+                  <option value="0.45" selected>흙·비포장 경사지 (μ=0.45)</option>
+                  <option value="0.65">원목 끌기·진흙 마찰 (μ=0.65)</option>
+                  <option value="0.00">공중 수직 인양 (90° 전용)</option>
+                </select>
+              </div>
+              <div>
+                <label class="finder-step-label"><span>도르래 배력 세팅</span></label>
+                <select id="phyPulley" class="f-select" onchange="calcFieldPhysics()">
+                  <option value="1" selected>단선 직선 견인 (1x)</option>
+                  <option value="2">스윙 활차 1개 복선 (2x)</option>
+                  <option value="4">복합 더블 활차 (4x)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="physics-result-box" id="phyResultBox"></div>
+
+            <button type="button" class="btn-finder-run" onclick="applyPhysicsFilterToCatalog()">
+              <span>계산 하중 충족 기종 바로 필터링</span>
+              <span class="mono" id="phyMatchBtnTag">SPEC FILTER →</span>
+            </button>
+          </div>
         </div>
 
         <!-- Gemini 4 Carbon 현장 맞춤 설비 설계사 -->
         <div class="carbon-consult-box">
           <div class="carbon-consult-hdr">
-            <span>🧠 GEMINI 4 CARBON · 현장 조건 맞춤 윈치·호이스트 설계 엔진</span>
-            <span class="mono" style="font-size:10.5px;color:#9CA3AF;">MODEL: gemini-4-carbon</span>
+            <span>💎 GEMINI 4 CARBON · 현장 설비 매칭 엔지니어</span>
+            <span class="mono" style="font-size:10px;color:#64748B;">gemini-4-carbon</span>
           </div>
           <div class="carbon-input-row">
-            <input type="text" id="carbonSitePrompt" class="carbon-input" placeholder="예: 산악 현장에서 전기 없이 1톤 원목을 80m 끌어야 함 / 옥상 20m로 300kg 자재 인양" onkeydown="if(event.key==='Enter')askCarbonFieldEngineer()" />
-            <button type="button" class="carbon-btn" onclick="askCarbonFieldEngineer()">카본 스펙 매칭</button>
+            <input type="text" id="carbonSitePrompt" class="carbon-input" placeholder="예: 산악 현장에서 전기 없이 1톤 원목 80m 견인 / 5층 옥상 250kg 자재 인양" onkeydown="if(event.key==='Enter')askCarbonFieldEngineer()" />
+            <button type="button" class="carbon-btn" onclick="askCarbonFieldEngineer()">매칭 분석</button>
           </div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
-            <button type="button" onclick="presetCarbonPrompt('산림 간벌 현장에서 전기 없이 1톤 원목을 경사면 80m 위로 견인해야 합니다. 추천 윈치와 필수 부자재 조합 알려주세요.')" style="background:#181C23;border:1px solid #374151;color:#9CA3AF;font-size:11px;padding:3px 8px;cursor:pointer;">#산림1톤무전원견인</button>
-            <button type="button" onclick="presetCarbonPrompt('상가 건물 5층 옥상(약 20m)으로 250kg 에어컨 실외기와 배관 자재를 단상 220V로 안전하게 인양할 윈치 추천해줘.')" style="background:#181C23;border:1px solid #374151;color:#9CA3AF;font-size:11px;padding:3px 8px;cursor:pointer;">#옥상250kg단상220V인양</button>
-            <button type="button" onclick="presetCarbonPrompt('공장 H빔 천장에 설치해 2톤 금형과 철판을 삼상 380V로 들어올릴 호이스트와 자석리프트 세팅 추천해줘.')" style="background:#181C23;border:1px solid #374151;color:#9CA3AF;font-size:11px;padding:3px 8px;cursor:pointer;">#공장2톤삼상호이스트</button>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
+            <button type="button" class="carbon-chip" onclick="presetCarbonPrompt('산림 간벌 현장에서 전기 없이 1톤 원목을 경사면 80m 위로 견인해야 합니다. 추천 윈치와 필수 부자재 조합 알려주세요.')">#산림1톤무전원견인</button>
+            <button type="button" class="carbon-chip" onclick="presetCarbonPrompt('상가 5층 옥상(20m)으로 250kg 실외기 자재를 단상 220V로 안전하게 인양할 윈치 추천해줘.')">#옥상250kg220V인양</button>
+            <button type="button" class="carbon-chip" onclick="presetCarbonPrompt('공장 H빔 천장에 설치해 2톤 철판을 삼상 380V로 들어올릴 호이스트와 자석리프트 세팅 추천해줘.')">#공장2톤삼상호이스트</button>
           </div>
           <div id="carbonEngineerOutput" class="carbon-result"></div>
         </div>
@@ -1455,7 +1738,7 @@
           <h2 class="sec-title">동력원·정격하중 기준 5대 주력 라인업</h2>
         </div>
         <p class="sec-desc">
-          오라테크는 모호한 마케팅 용어 대신 <b>전압(Voltage), 1단 정격 인장력(Line Pull), 로프 규격(Wire/Rope)</b>을 기준으로 장비를 분류합니다.
+          모호한 홍보 문구 대신 <b>전압(Voltage), 1단 정격 인장력(Line Pull), 로프 규격(Wire/Rope)</b>을 기준으로 장비를 분류합니다.
         </p>
       </div>
 
@@ -1465,7 +1748,7 @@
             <div class="m-num"><span>LINE 01</span><span>CANADA / ITALY</span></div>
             <div class="m-title">엔진윈치 · 포터블 캡스턴</div>
             <div class="m-spec-pill">Honda 4-Stroke / 82V Li-Ion · 무제한 로프</div>
-            <p class="m-copy">전기 진입이 불가능한 산림청·산림조합 벌목 견인, 한전 송배전 지중화 케이블 포설, 산악 구난용 캡스턴 마찰 윈치.</p>
+            <p class="m-copy">산림청·산림조합 벌목 견인, 한전 지중화 케이블 포설, 산악 구난용 캡스턴 마찰 윈치.</p>
           </div>
           <div class="m-foot"><span>PCW-5000 / 4000 / 3000LI</span><span>제원표 보기 →</span></div>
         </div>
@@ -1475,7 +1758,7 @@
             <div class="m-num"><span>LINE 02</span><span>INDUSTRIAL AC</span></div>
             <div class="m-title">산업·건설 중하중 전동윈치</div>
             <div class="m-spec-pill">AC 220V(단상) / 380V(삼상) · 200kg~10Ton</div>
-            <p class="m-copy">건설 자재 인양, 플랜트 설비 이설, 비계·승강 작업용. 과부하 방지 및 전자식 마그네틱 브레이크 탑재 정품 라인업.</p>
+            <p class="m-copy">건설 자재 인양, 플랜트 설비 이설, 비계 작업용. 전자식 마그네틱 브레이크 탑재 정품 라인업.</p>
           </div>
           <div class="m-foot"><span>PU / FU / COMEUP CP·CWG</span><span>제원표 보기 →</span></div>
         </div>
@@ -1483,9 +1766,9 @@
         <div class="matrix-cell" onclick="filterByCategory('미니/특수윈치')">
           <div>
             <div class="m-num"><span>LINE 03</span><span>COMPACT HIGH-SPEED</span></div>
-            <div class="m-title">단상 220V 고속 미니·특수윈치</div>
-            <div class="m-spec-pill">AC 220V Plug-in · 80kg~500kg · 유무선 겸용</div>
-            <p class="m-copy">현장 220V 콘센트 직결 즉시 가동. 옥상 방수·에어컨 실외기·인테리어 자재 인양에 최적화된 경량 고속 윈치.</p>
+            <div class="m-title">단상 220V 고속 미니윈치</div>
+            <div class="m-spec-pill">AC 220V Plug-in · 80kg~500kg · 유무선</div>
+            <p class="m-copy">현장 220V 콘센트 직결 즉시 가동. 옥상 방수·실외기·인테리어 자재 인양용 경량 고속 윈치.</p>
           </div>
           <div class="m-foot"><span>YAMAGATA YT / KIO / DUKE</span><span>제원표 보기 →</span></div>
         </div>
@@ -1493,9 +1776,9 @@
         <div class="matrix-cell" onclick="filterByCategory('호이스트')">
           <div>
             <div class="m-num"><span>LINE 04</span><span>OVERHEAD LIFTING</span></div>
-            <div class="m-title">전동 호이스트 · 체인블럭 · 자석</div>
-            <div class="m-spec-pill">0.5Ton ~ 10Ton · G80 합금강 로드체인</div>
-            <p class="m-copy">공장 천장 I빔 크레인용 단상/삼상 체인호이스트, V-TAL 체인블럭, MAX 레바블럭, 무전원 네오디뮴 영구자석 리프터.</p>
+            <div class="m-title">전동 호이스트 · 체인 · 자석</div>
+            <div class="m-spec-pill">0.5Ton ~ 10Ton · G80 합금강 체인</div>
+            <p class="m-copy">공장 천장 I빔 크레인용 단상/삼상 체인호이스트, 수동 체인블럭, 무전원 영구자석 리프터.</p>
           </div>
           <div class="m-foot"><span>LK / 극동 / V-TAL / PML</span><span>제원표 보기 →</span></div>
         </div>
@@ -1504,10 +1787,10 @@
           <div>
             <div class="m-num"><span>LINE 05</span><span>MATERIAL HANDLING</span></div>
             <div class="m-title">유압 스태커 · 리프트 · DC특장</div>
-            <div class="m-spec-pill">DC 12V/24V · 유압 400kg~2.5Ton · 고소작업대</div>
-            <p class="m-copy">화물차 상하차 및 물류창고용 수동/전동 유압 스태커, 자주식 시저스 고소작업대(6m~12m), 특장차용 방수 DC윈치.</p>
+            <div class="m-spec-pill">DC 12V/24V · 유압 400kg~2.5Ton</div>
+            <p class="m-copy">물류 상하차 수동/전동 유압 스태커, 자주식 고소작업대(7.8m~10m), 특장차용 방수 DC윈치.</p>
           </div>
-          <div class="m-foot"><span>SYC / SEF / EDYC / JCPT</span><span>제원표 보기 →</span></div>
+          <div class="m-foot"><span>SYC / SEF / DV / JCPT</span><span>제원표 보기 →</span></div>
         </div>
       </div>
     </div>
@@ -1522,11 +1805,11 @@
           <h2 class="sec-title">오라테크 전 모델 개별 제원표 &amp; 원클릭 견적·결제</h2>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <button type="button" class="view-btn" onclick="openInstantOfficialQuote('PCW-5000')" style="background:#C81E1E;color:#fff;border-color:#C81E1E;">
-            📄 법인·관공서 직인 견적서 즉시 발급기
+          <button type="button" class="view-btn active" onclick="openInstantOfficialQuote('PCW-5000')">
+            📄 직인 견적서·비교견적서 즉시 발행
           </button>
           <a href="https://smartstore.naver.com" target="_blank" class="view-btn" style="background:#03C75A;color:#fff;border-color:#03C75A;text-decoration:none;display:inline-flex;align-items:center;">
-            🟩 오라테크 네이버 스마트스토어 바로가기 ↗
+            🟩 네이버 스마트스토어 바로가기 ↗
           </a>
         </div>
       </div>
@@ -1537,16 +1820,23 @@
         <div class="sub-filter-row">
           <div class="cap-chip-group" id="catalogCapChips"></div>
           <div class="search-view-group">
-            <input type="text" id="catalogSearchInput" class="search-input" placeholder="모델명(예: PCW-5000, YT-300, PU-500B, LK-DA010) 검색..." oninput="renderCatalog()" />
-            <button type="button" id="btnViewCard" class="view-btn active" onclick="setCatalogView('card')">개별 제원 카드뷰</button>
-            <button type="button" id="btnViewTable" class="view-btn" onclick="setCatalogView('table')">시리즈 통합 제원표뷰</button>
+            <input type="text" id="catalogSearchInput" class="search-input" placeholder="모델명·전압·하중(예: PCW-5000, DU-250, 380V)..." oninput="renderCatalog()" />
+            <select id="catalogSortSel" class="sort-select" onchange="renderCatalog()">
+              <option value="DEFAULT">표준 카탈로그순</option>
+              <option value="CAP_ASC">정격하중 낮은순</option>
+              <option value="CAP_DESC">정격하중 높은순</option>
+              <option value="PRICE_ASC">기준단가 낮은순</option>
+              <option value="LIFT_ONLY">수직 인양 가능만</option>
+            </select>
+            <button type="button" id="btnViewCard" class="view-btn active" onclick="setCatalogView('card')">카드형</button>
+            <button type="button" id="btnViewTable" class="view-btn" onclick="setCatalogView('table')">제원표형</button>
           </div>
         </div>
       </div>
 
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13.5px;font-weight:800;">
-        <div>검색 결과: 총 <span class="mono" id="catalogResultCount" style="color:var(--ora-red);font-size:16px;">0</span>개 세부 모델</div>
-        <div style="font-size:12px;color:var(--text-muted);">※ 각 모델을 클릭하면 <b>드럼 층수별 견인력·외형 도면·시리즈 비교표·직인 견적서·N Pay 옵션결제</b> 창이 열립니다.</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px;font-size:13.5px;font-weight:800;">
+        <div>검색 결과: 총 <span class="mono" id="catalogResultCount" style="color:var(--ora-blue);font-size:16px;">0</span>개 정품 세부 모델</div>
+        <div style="font-size:12px;color:var(--text-muted);">※ 카드 우측 <b>[+ 비교]</b>로 최대 3종 사양 나란히 비교 · 모델 클릭 시 <b>드럼 층수별 견인력·치수도면·직인견적</b> 열기</div>
       </div>
 
       <div id="catalogContainer"></div>
@@ -1562,7 +1852,7 @@
           <h2 class="sec-title">현장별 가장 많이 발주하는 표준 세팅 패키지</h2>
         </div>
         <p class="sec-desc">
-          단품 구매 후 로프 규격이나 활차(도르래) 핀 사이즈가 맞지 않아 작업이 지연되는 일을 막기 위해, 현장 검증을 마친 풀세트를 제안합니다.
+          단품 구매 후 로프 규격이나 활차 핀 사이즈가 맞지 않아 작업이 지연되는 일을 막기 위해, 현장 검증을 마친 풀세트를 제안합니다.
         </p>
       </div>
 
@@ -1570,20 +1860,20 @@
         <div class="pkg-card">
           <div class="pkg-img">
             <img src="https://igan3w.github.io/studio/ora_assets/single_5000_forester.jpg" alt="산림조합·한전 포설 패키지" />
-            <span class="pkg-tag">PACKAGE 01 · FORESTRY &amp; POWER</span>
+            <span class="pkg-tag">PACKAGE 01 · FORESTRY</span>
           </div>
           <div class="pkg-content">
             <div>
               <div class="pkg-title">산림조합 간벌 견인 &amp; 한국전력 지중화 포설 풀세트</div>
               <ul class="pkg-list">
-                <li>• <b>주력 본체:</b> 캐나다 포터블 엔진윈치 <span class="mono">PCW-5000</span> (혼다 GXH-50 / 직선 1톤·배력 2~5톤)</li>
+                <li>• <b>주력 본체:</b> 캐나다 포터블 엔진윈치 <span class="mono">PCW-5000</span> (혼다 GXH-50 / 직선 1톤·배력 5톤)</li>
                 <li>• <b>전용 로프:</b> 저신율 더블브레이드 폴리에스터 로프 <span class="mono">Ø12mm × 100m</span></li>
-                <li>• <b>배력/보호:</b> 스테인리스 스윙 활차(<span class="mono">PCA-1274</span>) + 수목 슬링벨트 + <span class="mono">PCA-1290</span> 견인콘</li>
+                <li>• <b>배력/보호:</b> 스테인리스 스윙 활차(<span class="mono">PCA-1274</span>) + 슬링벨트 + <span class="mono">PCA-1290</span> 콘</li>
               </ul>
             </div>
             <div style="display:flex;gap:8px;">
-              <button type="button" class="pf-btn quote" style="flex:1;border:none;" onclick="openInstantOfficialQuote('PCW-5000')">관공서 지출결의용 견적서 출력</button>
-              <button type="button" class="pf-btn" style="flex:1;border:1px solid var(--ink);" onclick="openProductDetailByCode('PCW-5000')">패키지 상세 제원</button>
+              <button type="button" class="pf-btn quote" style="flex:1;border-radius:6px;" onclick="openInstantOfficialQuote('PCW-5000')">관공서 견적서 출력</button>
+              <button type="button" class="pf-btn" style="flex:1;border:1px solid #BFDBFE;border-radius:6px;" onclick="openProductDetailByCode('PCW-5000')">패키지 상세제원</button>
             </div>
           </div>
         </div>
@@ -1591,20 +1881,20 @@
         <div class="pkg-card">
           <div class="pkg-img">
             <img src="https://igan3w.github.io/studio/ora_assets/site_single_telecom_cable.jpg" alt="밀폐 터널·배전 무매연 패키지" />
-            <span class="pkg-tag">PACKAGE 02 · ZERO-EMISSION 82V</span>
+            <span class="pkg-tag">PACKAGE 02 · 82V ZERO-EMISSION</span>
           </div>
           <div class="pkg-content">
             <div>
               <div class="pkg-title">밀폐 관로·터널·도심 야간작업 82V 무매연 배터리 세트</div>
               <ul class="pkg-list">
-                <li>• <b>주력 본체:</b> 브러시리스 배터리 캡스턴 윈치 <span class="mono">PCW-3000LI</span> (자중 9.5kg / 직선 700kg)</li>
+                <li>• <b>주력 본체:</b> 브러시리스 배터리 캡스턴 윈치 <span class="mono">PCW-3000LI</span> (자중 9.5kg / 700kg)</li>
                 <li>• <b>전원 구성:</b> 82V 대용량 리튬이온 배터리팩 2조 + 고속충전기</li>
                 <li>• <b>체결 구성:</b> <span class="mono">Ø10mm × 50m</span> 전용 로프 + 앵커 슬링 + 오토락 카라비너</li>
               </ul>
             </div>
             <div style="display:flex;gap:8px;">
-              <button type="button" class="pf-btn quote" style="flex:1;border:none;" onclick="openInstantOfficialQuote('PCW-3000LI')">법인·관공서 견적서 출력</button>
-              <button type="button" class="pf-btn" style="flex:1;border:1px solid var(--ink);" onclick="openProductDetailByCode('PCW-3000LI')">패키지 상세 제원</button>
+              <button type="button" class="pf-btn quote" style="flex:1;border-radius:6px;" onclick="openInstantOfficialQuote('PCW-3000LI')">관공서 견적서 출력</button>
+              <button type="button" class="pf-btn" style="flex:1;border:1px solid #BFDBFE;border-radius:6px;" onclick="openProductDetailByCode('PCW-3000LI')">패키지 상세제원</button>
             </div>
           </div>
         </div>
@@ -1612,7 +1902,7 @@
         <div class="pkg-card">
           <div class="pkg-img">
             <img src="https://igan3w.github.io/studio/ora_assets/site_single_scaffold_pipe.jpg" alt="건설·옥상 자재 인양 패키지" />
-            <span class="pkg-tag">PACKAGE 03 · CONSTRUCTION LIFT</span>
+            <span class="pkg-tag">PACKAGE 03 · CONSTRUCTION</span>
           </div>
           <div class="pkg-content">
             <div>
@@ -1620,12 +1910,12 @@
               <ul class="pkg-list">
                 <li>• <b>주력 본체:</b> 컴업/파워업 마그네틱 브레이크형 <span class="mono">GXR-300 / PU-500B</span> (단상 220V)</li>
                 <li>• <b>안전 제어:</b> 산업용 장거리 무선 리모컨 송수신기 + 비상정지 펜던트 스위치</li>
-                <li>• <b>로프 구성:</b> 회전 방지(비자전성) 고장력 강선 와이어로프 + 안전 래치 중량 훅</li>
+                <li>• <b>로프 구성:</b> 비자전성 고장력 강선 와이어로프 + 안전 래치 중량 훅</li>
               </ul>
             </div>
             <div style="display:flex;gap:8px;">
-              <button type="button" class="pf-btn quote" style="flex:1;border:none;" onclick="openInstantOfficialQuote('PU-500B')">법인 견적서 즉시 출력</button>
-              <button type="button" class="pf-btn" style="flex:1;border:1px solid var(--ink);" onclick="openProductDetailByCode('PU-500B')">패키지 상세 제원</button>
+              <button type="button" class="pf-btn quote" style="flex:1;border-radius:6px;" onclick="openInstantOfficialQuote('PU-500B')">법인 견적서 출력</button>
+              <button type="button" class="pf-btn" style="flex:1;border:1px solid #BFDBFE;border-radius:6px;" onclick="openProductDetailByCode('PU-500B')">패키지 상세제원</button>
             </div>
           </div>
         </div>
@@ -1640,13 +1930,13 @@
               <div class="pkg-title">공장 천장 호이스트 &amp; 철판 자석리프터 / 전동스태커 세트</div>
               <ul class="pkg-list">
                 <li>• <b>주력 본체:</b> LK 삼상 380V 전동 체인호이스트 <span class="mono">LK-DA020</span> (2톤) + 쇼크레스타</li>
-                <li>• <b>하단 결속:</b> 무전원 네오디뮴 영구자석 리프터 <span class="mono">PML-600 / PML-1000</span> (안전율 3.5배)</li>
-                <li>• <b>물류 이송:</b> 트럭 상하차용 전동 미니 스태커 <span class="mono">SEF-4150</span> / 유압 스태커 <span class="mono">SYC-1016</span></li>
+                <li>• <b>하단 결속:</b> 무전원 네오디뮴 영구자석 리프터 <span class="mono">PML-600 / PML-1000</span></li>
+                <li>• <b>물류 이송:</b> 트럭 상하차용 전동 미니 스태커 <span class="mono">SEF-4150</span> / <span class="mono">SYC-1016</span></li>
               </ul>
             </div>
             <div style="display:flex;gap:8px;">
-              <button type="button" class="pf-btn quote" style="flex:1;border:none;" onclick="openInstantOfficialQuote('LK-DA020')">법인 견적서 즉시 출력</button>
-              <button type="button" class="pf-btn" style="flex:1;border:1px solid var(--ink);" onclick="openProductDetailByCode('LK-DA020')">패키지 상세 제원</button>
+              <button type="button" class="pf-btn quote" style="flex:1;border-radius:6px;" onclick="openInstantOfficialQuote('LK-DA020')">법인 견적서 출력</button>
+              <button type="button" class="pf-btn" style="flex:1;border:1px solid #BFDBFE;border-radius:6px;" onclick="openProductDetailByCode('LK-DA020')">패키지 상세제원</button>
             </div>
           </div>
         </div>
@@ -1654,46 +1944,46 @@
     </div>
   </section>
 
-  <!-- 7. WHY ORATECH (4대 엔지니어링 검증 원칙) -->
-  <section class="section-Wrap-dark" id="sec-why">
+  <!-- 7. WHY ORATECH (로얄 블루 4대 엔지니어링 검증 원칙) -->
+  <section class="section-wrap-blue" id="sec-why">
     <div class="container">
-      <div class="sec-head" style="border-bottom-color:#2E3644;">
+      <div class="sec-head">
         <div>
           <div class="sec-kicker">04 / ENGINEERING VERIFICATION STANDARD</div>
-          <h2 class="sec-title" style="color:#fff;">싼 윈치는 한 번 당기고 멈추지만, 오라테크는 현장이 끝날 때까지 감아 올립니다.</h2>
+          <h2 class="sec-title">싼 윈치는 한 번 당기고 멈추지만, 오라테크는 현장이 끝날 때까지 감아 올립니다.</h2>
         </div>
-        <p class="sec-desc" style="color:#9CA3AF;">
-          카탈로그 사진만 올려놓고 중개만 하는 온라인 판매점이 아닙니다. 청계천 본사 엔지니어가 출고 전 제동력과 결선 상태를 직접 검증합니다.
+        <p class="sec-desc">
+          단순 온라인 중개점이 아닙니다. 청계천 본사 엔지니어가 출고 전 제동력과 결선 상태를 직접 검수합니다.
         </p>
       </div>
 
       <div class="why-grid">
         <div class="why-card">
-          <div class="why-idx">PRINCIPLE 01 // REAL RATED PULL</div>
+          <div class="why-idx">01 // REAL RATED PULL</div>
           <h3>허수 없는 실측 하중 안내<br />(드럼 층수별 견인력 계산)</h3>
-          <p>드럼 외곽 마지막 층에서는 견인력이 1단 대비 최대 40% 이상 감소합니다. 오라테크는 부풀려진 최대치만 말하지 않고, 작업 거리와 드럼 층수별 실제 견인력(kgf) 및 안전 여유율(1.5배)을 계산해 과부하 없는 모델을 매칭합니다.</p>
+          <p>드럼 외곽 마지막 층에서는 견인력이 1단 대비 최대 34~40% 감소합니다. 오라테크는 부풀린 최대치가 아닌 작업 거리와 층수별 유효 하중, 안전 여유율(1.5배)을 계산해 매칭합니다.</p>
         </div>
         <div class="why-card">
-          <div class="why-idx">PRINCIPLE 02 // BRAKE SEPARATION</div>
+          <div class="why-idx">02 // BRAKE SEPARATION</div>
           <h3>수직 인양 vs 수평 견인<br />엄격 분리 출고 원칙</h3>
-          <p>견인용 클러치 윈치를 공중 매달기(인양)에 사용하면 중대 사고로 이어집니다. 작업 방향이 수직인지 경사면인지 먼저 확인하고, 기계식·전자식 마그네틱 제동(Brake) 메커니즘이 검증된 장비만 출고합니다.</p>
+          <p>견인용 클러치 윈치를 공중 매달기에 사용하면 중대 사고로 이어집니다. 작업 방향을 먼저 확인하고 전자식·기계식 브레이크 메커니즘이 검증된 기종만 출고합니다.</p>
         </div>
         <div class="why-card">
-          <div class="why-idx">PRINCIPLE 03 // IN-HOUSE PARTS &amp; A/S</div>
+          <div class="why-idx">03 // IN-HOUSE PARTS &amp; A/S</div>
           <h3>모터·브레이크·감속기<br />청계천 본사 상시 스톡</h3>
-          <p>해외 직구나 보따리상 제품은 릴레이나 스위치 하나만 소손되어도 장비 전체를 폐기해야 합니다. 오라테크는 CM·LK모터, 유성기어 감속기, 마그네틱 브레이크, 무선 수신기, 카본 브러시를 본사에 상시 보유하고 직접 수리합니다.</p>
+          <p>해외 직구 제품은 릴레이 하나만 타도 폐기해야 합니다. 오라테크는 모터, 유성기어 감속기, 마그네틱 브레이크, 무선 수신기를 본사에 상시 보유하고 직접 수리합니다.</p>
         </div>
         <div class="why-card">
-          <div class="why-idx">PRINCIPLE 04 // B2B &amp; G2B ONE-STOP</div>
+          <div class="why-idx">04 // B2B &amp; G2B ONE-STOP</div>
           <h3>관공서·법인 공무팀<br />행정 서류 5분 내 대응</h3>
-          <p>산림조합·한국전력·지자체 수의계약 및 나라장터(G2B) 지출결의에 필요한 본견적서, 타사 비교견적서, 사업자등록증·통장사본, 국세·지방세 완납증명서, 제품별 상세 규격서(시방서)를 당일 즉시 지원합니다.</p>
+          <p>산림조합·한전·지자체 수의계약 및 G2B 지출결의에 필요한 본견적서, 타사 비교견적서, 사업자·통장사본, 완납증명서, 제품 규격서를 당일 즉시 지원합니다.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 8. CHEONGGYECHEON HQ & ONLINE TECHNICAL INQUIRY -->
-  <section class="section-wrap" id="sec-hq">
+  <section class="section-wrap white" id="sec-hq">
     <div class="container">
       <div class="sec-head">
         <div>
@@ -1701,74 +1991,74 @@
           <h2 class="sec-title">청계천 본사 직영 전시장 · A/S 센터 및 온라인 견적 접수</h2>
         </div>
         <p class="sec-desc">
-          기존에 쓰시던 고장 난 윈치의 <b>명판 사진이나 현장 사진</b>을 <b>010-8931-7788</b>로 찍어 보내주시면 호환 모델과 수리 견적을 즉시 안내해 드립니다.
+          고장 난 윈치의 <b>명판 사진·현장 사진</b>을 <b>010-8931-7788</b>로 보내주시면 호환 모델과 수리 견적을 바로 안내해 드립니다.
         </p>
       </div>
 
       <div class="hq-grid">
         <div class="hq-box">
-          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:18px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ora-royal);padding-bottom:14px;margin-bottom:18px;">
             <div>
-              <div class="mono" style="font-size:11px;color:var(--ora-red);font-weight:800;">CORPORATE PROFILE &amp; SHOWROOM</div>
-              <h3 style="font-size:22px;font-weight:900;">주식회사 오라테크 (ORATECH)</h3>
+              <div class="mono" style="font-size:11px;color:var(--ora-blue);font-weight:800;">CORPORATE PROFILE &amp; SHOWROOM</div>
+              <h3 style="font-size:21px;font-weight:900;color:var(--ora-navy);">주식회사 오라테크 (ORATECH)</h3>
             </div>
-            <img src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="오라테크" style="height:36px;object-fit:contain;" />
+            <img src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="오라테크" style="height:34px;object-fit:contain;" />
           </div>
 
           <table class="eng-table" style="margin-bottom:20px;">
             <tbody>
               <tr><th style="width:130px;">대표이사 / 사업자</th><td><b>김 향 래</b> / 사업자등록번호: <span class="mono">104-05-66181</span></td></tr>
-              <tr><th>본사·직영 전시장</th><td><b>서울특별시 중구 청계천로 110, 1층 (수표동)</b> · 청계천 수표교 앞 (을지로3가역 도보 4분)</td></tr>
-              <tr><th>기술영업 직통</th><td><b class="mono" style="color:var(--ora-red);font-size:16px;">1600-5157</b> / 매장: <span class="mono">02-2266-0989</span> / 현장·명판사진 직통: <b class="mono">010-8931-7788</b></td></tr>
-              <tr><th>팩스 / 이메일</th><td>FAX: <span class="mono">02-2264-8272</span> / E-mail: <span class="mono">orawinch@naver.com · orawinch@kakao.com</span></td></tr>
+              <tr><th>본사·직영 전시장</th><td><b>서울특별시 중구 청계천로 110, 1층 (수표동)</b> · 청계천 수표교 앞</td></tr>
+              <tr><th>기술영업 직통</th><td><b class="mono" style="color:var(--ora-blue);font-size:16px;">1600-5157</b> / 매장: <span class="mono">02-2266-0989</span> / 현장직통: <b class="mono">010-8931-7788</b></td></tr>
+              <tr><th>팩스 / 이메일</th><td>FAX: <span class="mono">02-2264-8272</span> / <span class="mono">orawinch@naver.com · orawinch@kakao.com</span></td></tr>
               <tr><th>법인 지정계좌</th><td><b>우리은행 <span class="mono">011-058791-12-001</span></b> (예금주: 김향래 / 오라테크)</td></tr>
-              <tr><th>출고 프로토콜</th><td>택배(평일 15시 마감) · 전국 정기화물/경동/대신화물 파렛트 출고 · 수도권/전국 긴급 용달 즉시 상차</td></tr>
+              <tr><th>출고 프로토콜</th><td>택배(15시 마감) · 전국 경동/대신 정기화물 · 긴급 용달 즉시 상차</td></tr>
             </tbody>
           </table>
 
           <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EC%A4%91%EA%B5%AC%20%EC%B2%AD%EA%B3%84%EC%B2%9C%EB%A1%9C%20110" target="_blank" class="pf-btn npay" style="padding:12px 18px;text-decoration:none;">
-              📍 네이버 지도로 청계천 본사 위치 보기 ↗
+            <a href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EC%A4%91%EA%B5%AC%20%EC%B2%AD%EA%B3%84%EC%B2%9C%EB%A1%9C%20110" target="_blank" class="pf-btn npay" style="padding:11px 18px;border-radius:7px;text-decoration:none;">
+              📍 네이버 지도 본사 위치 ↗
             </a>
-            <a href="tel:1600-5157" class="pf-btn quote" style="padding:12px 18px;text-decoration:none;">
-              📞 기술영업부 전화 연결 (1600-5157)
+            <a href="tel:1600-5157" class="pf-btn quote" style="padding:11px 18px;border-radius:7px;text-decoration:none;">
+              📞 기술영업 직통 연결 (1600-5157)
             </a>
           </div>
         </div>
 
         <div class="hq-box">
-          <div style="border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:18px;">
-            <div class="mono" style="font-size:11px;color:var(--ora-navy);font-weight:800;">DIRECT ERP &amp; TELEGRAM DISPATCH</div>
-            <h3 style="font-size:22px;font-weight:900;">빠른 B2B 견적 · 대량발주 · 특주 문의</h3>
+          <div style="border-bottom:2px solid var(--ora-royal);padding-bottom:14px;margin-bottom:18px;">
+            <div class="mono" style="font-size:11px;color:var(--ora-blue);font-weight:800;">DIRECT ERP &amp; TELEGRAM DISPATCH</div>
+            <h3 style="font-size:21px;font-weight:900;color:var(--ora-navy);">빠른 B2B 견적 · 대량발주 · 특주 문의</h3>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
             <div>
-              <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;">업체명 / 기관명 / 담당자 *</label>
-              <input type="text" id="hqInqClient" placeholder="예: (주)대한건설 김철수 과장" style="width:100%;padding:10px;border:1px solid var(--grid-line);font-weight:700;" />
+              <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;color:var(--ora-navy);">업체명 / 기관명 / 담당자 *</label>
+              <input type="text" id="hqInqClient" placeholder="예: (주)대한건설 김철수 과장" style="width:100%;padding:10px;border:1.5px solid #CBD5E1;border-radius:7px;font-weight:700;" />
             </div>
             <div>
-              <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;">회신 연락처 *</label>
-              <input type="text" id="hqInqTel" placeholder="예: 010-0000-0000" style="width:100%;padding:10px;border:1px solid var(--grid-line);font-weight:700;" />
+              <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;color:var(--ora-navy);">회신 연락처 *</label>
+              <input type="text" id="hqInqTel" placeholder="예: 010-0000-0000" style="width:100%;padding:10px;border:1.5px solid #CBD5E1;border-radius:7px;font-weight:700;" />
             </div>
           </div>
 
           <div style="margin-bottom:10px;">
-            <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;">문의 모델명 또는 작업 조건 (전원 / 필요하중 / 양정거리)</label>
-            <input type="text" id="hqInqModel" placeholder="예: PCW-5000 2대 + 100m 로프 세트 / 비교견적서 포함 요청" style="width:100%;padding:10px;border:1px solid var(--grid-line);font-weight:700;" />
+            <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;color:var(--ora-navy);">문의 모델명 또는 작업 조건</label>
+            <input type="text" id="hqInqModel" placeholder="예: PCW-5000 2대 + 100m 로프 / 비교견적서 포함 요청" style="width:100%;padding:10px;border:1.5px solid #CBD5E1;border-radius:7px;font-weight:700;" />
           </div>
 
           <div style="margin-bottom:14px;">
-            <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;">세부 요청사항 (세금계산서 / 납기일 / 와이어 길이 변경 등)</label>
-            <textarea id="hqInqMemo" rows="3" placeholder="필요하신 서류(본견적서, 비교견적서, 시방서)나 현장 조건을 적어주시면 오라테크 ERP 및 대표 직통 알림으로 즉시 접수됩니다." style="width:100%;padding:10px;border:1px solid var(--grid-line);"></textarea>
+            <label style="font-size:12px;font-weight:800;display:block;margin-bottom:4px;color:var(--ora-navy);">세부 요청사항 (세금계산서 / 납기일 / 와이어 연장)</label>
+            <textarea id="hqInqMemo" rows="3" placeholder="필요 서류(본견적서, 비교견적서, 시방서)나 현장 조건을 적어주시면 오라테크 ERP로 즉시 접수됩니다." style="width:100%;padding:10px;border:1.5px solid #CBD5E1;border-radius:7px;"></textarea>
           </div>
 
           <div style="display:flex;gap:10px;">
-            <button type="button" class="pf-btn" style="flex:1;border:1px solid var(--ink);padding:13px;" onclick="openInstantOfficialQuoteFromForm()">
-              🖨️ 직인 견적서 먼저 바로 뽑기
+            <button type="button" class="pf-btn" style="flex:1;border:1.5px solid var(--ora-royal);border-radius:7px;padding:12px;" onclick="openInstantOfficialQuoteFromForm()">
+              🖨️ 직인견적서 먼저 뽑기
             </button>
-            <button type="button" class="pf-btn quote" style="flex:1.4;padding:13px;font-size:14px;" onclick="submitHqInquiry()">
-              🚀 견적·기술상담 즉시 접수 (ERP 연동)
+            <button type="button" class="pf-btn quote" style="flex:1.4;border-radius:7px;padding:12px;font-size:13.5px;" onclick="submitHqInquiry()">
+              🚀 견적·상담 즉시 접수 (ERP 연동)
             </button>
           </div>
         </div>
@@ -1776,38 +2066,47 @@
     </div>
   </section>
 
-  <!-- 9. FOOTER -->
+  <!-- 9. FOOTER (로얄 네이비) -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div>
-        <img src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="(주)오라테크" style="height:36px;background:#fff;padding:4px 10px;margin-bottom:14px;object-fit:contain;" />
-        <p style="color:#fff;font-weight:800;margin-bottom:6px;">(주)오라테크 (ORATECH CO., LTD.) | 공식 도메인: www.orawinch.com · www.orawinch.co.kr</p>
+        <img src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="(주)오라테크" style="height:34px;background:#fff;border-radius:6px;padding:4px 10px;margin-bottom:14px;object-fit:contain;" />
+        <p style="color:#fff;font-weight:800;margin-bottom:6px;">(주)오라테크 (ORATECH CO., LTD.) | www.orawinch.com · www.orawinch.co.kr</p>
         <p style="margin-bottom:4px;">대표이사: 김향래 | 사업자등록번호: <span class="mono">104-05-66181</span></p>
         <p style="margin-bottom:8px;">본사 및 직영 전시장·A/S센터: 서울특별시 중구 청계천로 110, 1층 (수표동)</p>
-        <p style="color:#6B7280;font-size:12px;">© ORATECH Co., Ltd. All Rights Reserved. 무단 도면 및 제원표 복제를 금합니다.</p>
+        <p style="color:#93C5FD;font-size:12px;">© ORATECH Co., Ltd. All Rights Reserved.</p>
       </div>
       <div>
         <div style="color:#fff;font-weight:900;margin-bottom:8px;">기술상담 · 긴급출고 · 명판사진 접수</div>
-        <div class="mono" style="font-size:24px;font-weight:800;color:#FBBF24;margin-bottom:4px;">1600-5157</div>
-        <div class="mono" style="font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;">현장직통: 010-8931-7788 / 매장: 02-2266-0989</div>
-        <p>운영시간: 평일 08:30 ~ 18:00 / 토요일 탄력운영 (화물 당일출고 마감 15:00)</p>
+        <div class="mono" style="font-size:24px;font-weight:900;color:#7DD3FC;margin-bottom:4px;">1600-5157</div>
+        <div class="mono" style="font-size:14.5px;font-weight:700;color:#fff;margin-bottom:6px;">현장직통: 010-8931-7788 / 매장: 02-2266-0989</div>
+        <p>운영시간: 평일 08:30 ~ 18:00 (화물 당일출고 마감 15:00)</p>
       </div>
       <div>
         <div style="color:#fff;font-weight:900;margin-bottom:8px;">오라테크 디지털 통합 플랫폼</div>
         <div style="display:flex;flex-direction:column;gap:6px;">
-          <a href="https://igan3w.github.io/erp/" target="_blank" style="color:#D1D5DB;text-decoration:none;">• 오라테크 통합 클라우드 ERP ↗</a>
-          <a href="https://igan3w.github.io/studio/" target="_blank" style="color:#D1D5DB;text-decoration:none;">• 스마트스토어 상세페이지 AI 스튜디오 ↗</a>
-          <a href="https://igan3w.github.io/sourcing/" target="_blank" style="color:#D1D5DB;text-decoration:none;">• 글로벌 소싱랩 &amp; 30초 B2B 비교견적 포털 ↗</a>
+          <a href="https://igan3w.github.io/erp/" target="_blank" style="color:#DBEAFE;text-decoration:none;">• 오라테크 통합 클라우드 ERP ↗</a>
+          <a href="https://igan3w.github.io/studio/" target="_blank" style="color:#DBEAFE;text-decoration:none;">• 스마트스토어 상세페이지 AI 스튜디오 ↗</a>
+          <a href="https://igan3w.github.io/sourcing/" target="_blank" style="color:#DBEAFE;text-decoration:none;">• 글로벌 소싱랩 &amp; 30초 B2B 비교견적 ↗</a>
+          <a href="https://igan3w.github.io/oratech-ai-manager/" target="_blank" style="color:#DBEAFE;text-decoration:none;">• 스마트스토어 키워드·광고 AI 김대리 ↗</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- 하단 플로팅 비교 도크 -->
+  <div id="compareDock" class="compare-dock">
+    <span class="mono" style="font-size:12px;font-weight:900;">⚖️ 사양 비교함</span>
+    <div id="compareDockChips" style="display:flex;gap:6px;align-items:center;"></div>
+    <button type="button" onclick="openCompareModal()" style="padding:6px 12px;border-radius:6px;border:none;background:#38BDF8;color:#061D4E;font-weight:900;font-size:12px;cursor:pointer;">나란히 비교하기</button>
+    <button type="button" onclick="clearCompareModels()" style="padding:5px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.35);background:transparent;color:#fff;font-size:11px;cursor:pointer;">비우기</button>
+  </div>
+
   <!-- 모바일 하단 플로팅 액션바 -->
   <div class="mobile-action-bar">
     <a href="tel:1600-5157" class="mab-btn">📞 전화 1600-5157</a>
     <a href="sms:010-8931-7788" class="mab-btn">📷 명판사진 문자전송</a>
-    <button type="button" class="mab-btn" style="background:var(--ora-red);" onclick="openInstantOfficialQuote('PCW-5000')">🖨️ 1초 직인견적서</button>
+    <button type="button" class="mab-btn" style="background:var(--ora-blue);" onclick="openInstantOfficialQuote('PCW-5000')">🖨️ 1초 직인견적서</button>
   </div>
 
   <!-- 모달 1: PDP 상세 제원 + 드럼 층수별 견인력 + 외형 치수 도면 + 스마트스토어 하이브리드 구매창 -->
@@ -1815,7 +2114,7 @@
     <div class="modal-window">
       <div class="modal-top">
         <span class="mono" id="pdpModalTitle">TECHNICAL SPECIFICATION &amp; HYBRID COMMERCE</span>
-        <button type="button" onclick="closeModalById('pdpModal')" style="background:transparent;border:1px solid #4B5563;color:#fff;padding:4px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
+        <button type="button" onclick="closeModalById('pdpModal')" style="background:transparent;border:1px solid rgba(255,255,255,0.45);border-radius:5px;color:#fff;padding:4px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
       </div>
       <div class="modal-body" id="pdpModalBody"></div>
     </div>
@@ -1827,8 +2126,8 @@
       <div class="modal-top no-print">
         <span>🖨️ (주)오라테크 법인·관공서 공식 직인 견적서 / 비교견적서 즉시 발행기</span>
         <div style="display:flex;gap:8px;">
-          <button type="button" onclick="window.print()" style="background:#C81E1E;border:none;color:#fff;padding:6px 14px;cursor:pointer;font-weight:800;">🖨️ PDF 저장 / 즉시 인쇄</button>
-          <button type="button" onclick="closeModalById('officialQuotePrintModal')" style="background:transparent;border:1px solid #4B5563;color:#fff;padding:6px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
+          <button type="button" onclick="window.print()" style="background:#38BDF8;border:none;border-radius:5px;color:#061D4E;padding:6px 14px;cursor:pointer;font-weight:900;">🖨️ PDF 저장 / 인쇄</button>
+          <button type="button" onclick="closeModalById('officialQuotePrintModal')" style="background:transparent;border:1px solid rgba(255,255,255,0.45);border-radius:5px;color:#fff;padding:6px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
         </div>
       </div>
       <div class="modal-body" id="officialQuotePrintBody"></div>
@@ -1840,9 +2139,20 @@
     <div class="modal-window" style="width:780px;">
       <div class="modal-top">
         <span>✉️ 오라테크 B2B 견적서함 (복수 모델 일괄 견적·발주)</span>
-        <button type="button" onclick="closeModalById('quoteCartModal')" style="background:transparent;border:1px solid #4B5563;color:#fff;padding:4px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
+        <button type="button" onclick="closeModalById('quoteCartModal')" style="background:transparent;border:1px solid rgba(255,255,255,0.45);border-radius:5px;color:#fff;padding:4px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
       </div>
       <div class="modal-body" id="quoteCartBody"></div>
+    </div>
+  </div>
+
+  <!-- 모달 4: 3종 모델 나란히 사양 비교 모달 -->
+  <div class="modal-backdrop" id="compareModal" onclick="if(event.target===this)closeModalById('compareModal')">
+    <div class="modal-window" style="width:960px;">
+      <div class="modal-top">
+        <span>⚖️ 오라테크 정밀 제원 비교 매트릭스 (최대 3종 나란히 비교)</span>
+        <button type="button" onclick="closeModalById('compareModal')" style="background:transparent;border:1px solid rgba(255,255,255,0.45);border-radius:5px;color:#fff;padding:4px 12px;cursor:pointer;font-weight:800;">✕ 닫기</button>
+      </div>
+      <div class="modal-body" id="compareModalBody"></div>
     </div>
   </div>
   <script>
@@ -2090,6 +2400,22 @@
           ['JCPT-0807', '230Kg', '작업높이 7.8m', '전동 자주식 시저스 고소작업대 (렌탈카)', 7600000, ASSET_BASE + 'pallet_01.jpg'],
           ['JCPT-1008HD', '450Kg', '작업높이 10.0m', '전동 자주식 시저스 고소작업대 중량형', 8500000, ASSET_BASE + 'pallet_01.jpg']
         ]
+      },
+      {
+        cat: '수동/DC/유압윈치',
+        series: '컴업 방수 특장구난(DV) & 초고하중 플랜트·호이스트 확장(CWG/LK) & 순정 부자재',
+        liftSafe: false,
+        img: ASSET_BASE + 'duke_cwg_main.jpg',
+        cadImg: ASSET_BASE + 'pulley_hc_dim.jpg',
+        models: [
+          ['DV-9000', '4,080Kg (9,000LB)', 'Ø8.3mm × 30.5m', '컴업(COMEUP) 특장차·산악구난 방수 DC 12V/24V 전동윈치 / IP68', 1150000, ASSET_BASE + 'duke_cwg_main.jpg'],
+          ['DV-15000', '6,800Kg (15,000LB)', 'Ø11mm × 27m', '컴업 대형 레카·셀프로더 방수 DC 24V 중량 구난윈치', 1850000, ASSET_BASE + 'duke_cwg_main.jpg'],
+          ['CWG-5000', '5,000Kg (5톤)', 'Ø20mm × 100m', '컴업 초고하중 플랜트 전동윈치 / 삼상 380V / 320Kg', 12500000, ASSET_BASE + 'duke_cwg_main.jpg'],
+          ['LK-DA075', '7.5톤 (7,500Kg)', 'G80 로드체인 Ø11.2mm×3줄', 'LK 삼상 380V 대형 크레인 체인호이스트', 4900000, ASSET_BASE + 'hoist_kd2_main.jpg'],
+          ['PCA-1274', '배력 2배 (파단 9톤)', 'Ø12~13mm 로프겸용', '캐나다 포터블 스윙 사이드 알루미늄·스텐 활차 도르래', 180000, ASSET_BASE + 'pulley_hc_dim.jpg'],
+          ['PCA-1215M', '인장 3,300Kg', 'Ø12mm × 100m', '캐나다 더블브레이드 저신율 전용 폴리에스터 견인로프', 290000, ASSET_BASE + 'PCW5000-Collection.jpg'],
+          ['PCA-1290', '직경 50cm 통과', '고강도 폴리머', '산림·원목 견인 시 걸림 방지 스키딩 콘 (견인 고깔)', 260000, ASSET_BASE + 'single_5000_forester.jpg']
+        ]
       }
     ];
 
@@ -2136,8 +2462,156 @@
       cap: 'ALL',
       direction: 'ALL', // 'ALL' or 'LIFT'
       view: 'card',
-      cart: []
+      cart: [],
+      compare: [],
+      minReqKg: 0
     };
+
+    let LAST_PHYSICS_REQ_KG = 900;
+    let LAST_PHYSICS_IS_VERTICAL = false;
+
+    function toggleMobileNav() {
+      const dr = document.getElementById('mobileDrawer');
+      if (dr) dr.classList.toggle('open');
+    }
+
+    function switchHeroToolMode(mode) {
+      const isPhy = mode === 'physics';
+      const pf = document.getElementById('heroPanelFinder');
+      const pp = document.getElementById('heroPanelPhysics');
+      const bf = document.getElementById('heroTabFinderBtn');
+      const bp = document.getElementById('heroTabPhysicsBtn');
+      if (pf) pf.style.display = isPhy ? 'none' : 'block';
+      if (pp) pp.style.display = isPhy ? 'block' : 'none';
+      if (bf) bf.classList.toggle('active', !isPhy);
+      if (bp) bp.classList.toggle('active', isPhy);
+      if (isPhy) calcFieldPhysics();
+    }
+
+    function calcFieldPhysics() {
+      const w = Math.max(10, Number(document.getElementById('phyWeight')?.value || 1200));
+      const deg = Math.min(90, Math.max(0, Number(document.getElementById('phySlope')?.value || 30)));
+      const mu = Math.max(0, Number(document.getElementById('phyFriction')?.value || 0.45));
+      const pulley = Math.max(1, Number(document.getElementById('phyPulley')?.value || 1));
+
+      const rad = (deg * Math.PI) / 180;
+      const isVertical = deg >= 75 || document.getElementById('phyFriction')?.value === '0.00';
+      const rawForce = isVertical ? w : w * (Math.sin(rad) + mu * Math.cos(rad));
+      const safeReqSingle = Math.ceil((rawForce * 1.35) / pulley);
+      LAST_PHYSICS_REQ_KG = safeReqSingle;
+      LAST_PHYSICS_IS_VERTICAL = isVertical;
+
+      const matched = CATALOG_ITEMS.filter(it => {
+        if (isVertical && !it.liftSafe) return false;
+        return parseKg(it.cap) >= safeReqSingle;
+      });
+      const rec = matched.slice(0, 3).map(m => m.code).join(' / ') || 'FU-3000 / CWG-3000';
+      const box = document.getElementById('phyResultBox');
+      if (box) {
+        box.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:11.5px;font-weight:800;color:var(--ora-navy);">단선 1줄 최소 요구 인장력 (안전율 1.35x 포함)</span>
+            <span class="mono" style="font-size:17px;font-weight:900;color:var(--ora-blue);">${safeReqSingle.toLocaleString()} kgf</span>
+          </div>
+          <div style="font-size:11.5px;color:#334155;line-height:1.5;">
+            • 작업판정: <b>${isVertical ? '수직 양중(브레이크 내장 필수)' : '경사/수평 견인'}</b> · 추천: <b style="color:var(--ora-royal);">${rec}</b>
+          </div>
+        `;
+      }
+      const badge = document.getElementById('phyMatchBtnTag');
+      if (badge) badge.innerText = `${matched.length} MODELS →`;
+    }
+
+    function applyPhysicsFilterToCatalog() {
+      calcFieldPhysics();
+      STATE.direction = LAST_PHYSICS_IS_VERTICAL ? 'LIFT' : 'ALL';
+      STATE.minReqKg = LAST_PHYSICS_REQ_KG;
+      STATE.cat = 'ALL';
+      STATE.cap = 'ALL';
+      renderFilterBars();
+      renderCatalog();
+      scrollToSec('sec-catalog');
+    }
+
+    function toggleCompareModel(code, ev) {
+      if (ev) ev.stopPropagation();
+      const idx = STATE.compare.indexOf(code);
+      if (idx >= 0) {
+        STATE.compare.splice(idx, 1);
+      } else {
+        if (STATE.compare.length >= 3) {
+          alert('모델 제원 비교는 최대 3종까지 동시에 비교할 수 있습니다. 기존 비교 품목 중 하나를 해제해 주세요.');
+          return;
+        }
+        STATE.compare.push(code);
+      }
+      renderCompareDock();
+      renderCatalog();
+    }
+
+    function clearCompareModels() {
+      STATE.compare = [];
+      renderCompareDock();
+      renderCatalog();
+    }
+
+    function renderCompareDock() {
+      const cnt = STATE.compare.length;
+      const hdrCnt = document.getElementById('headerCompareCount');
+      if (hdrCnt) hdrCnt.innerText = `${cnt}/3`;
+      const dock = document.getElementById('compareDock');
+      const chips = document.getElementById('compareDockChips');
+      if (!dock || !chips) return;
+      if (cnt === 0) {
+        dock.classList.remove('show');
+        chips.innerHTML = '';
+        return;
+      }
+      dock.classList.add('show');
+      chips.innerHTML = STATE.compare.map(code => `
+        <span class="mono" style="background:rgba(255,255,255,0.16);border:1px solid #7DD3FC;padding:4px 9px;border-radius:6px;font-size:11.5px;font-weight:800;display:inline-flex;align-items:center;gap:6px;">
+          ${code}
+          <button type="button" onclick="toggleCompareModel('${code}')" style="background:none;border:none;color:#BAE6FD;cursor:pointer;font-weight:900;">✕</button>
+        </span>
+      `).join('');
+    }
+
+    function openCompareModal() {
+      const body = document.getElementById('compareModalBody');
+      if (!body) return;
+      if (!STATE.compare.length) {
+        body.innerHTML = `
+          <div style="padding:36px;text-align:center;">
+            <p style="font-size:14.5px;font-weight:700;color:var(--text-body);margin-bottom:14px;">아직 비교함에 담긴 모델이 없습니다.<br />카탈로그 카드 상단의 <b>[+ 비교]</b> 버튼을 눌러 최대 3개 모델을 비교해 보세요.</p>
+            <button type="button" class="view-btn active" onclick="STATE.compare=['PCW-5000','PCW-3000LI','PU-500B'];renderCompareDock();openCompareModal();renderCatalog();">대표 3종(PCW-5000 / 3000LI / PU-500B) 예시 비교하기</button>
+          </div>`;
+      } else {
+        const items = STATE.compare.map(c => CATALOG_ITEMS.find(x => x.code === c)).filter(Boolean);
+        body.innerHTML = `
+          <div style="overflow-x:auto;">
+            <table class="eng-table" style="min-width:640px;">
+              <thead>
+                <tr>
+                  <th style="width:150px;">비교 항목</th>
+                  ${items.map(it => `<th style="text-align:center;"><div class="mono" style="font-size:15px;color:var(--ora-royal);">${it.code}</div><div style="font-size:11px;font-weight:600;color:var(--text-muted);">${it.cat}</div></th>`).join('')}
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th>실물 사진</th>${items.map(it => `<td style="text-align:center;background:#fff;"><img src="${it.img}" alt="${it.code}" style="height:105px;object-fit:contain;" /></td>`).join('')}</tr>
+                <tr><th>1단 정격하중</th>${items.map(it => `<td class="mono" style="text-align:center;font-weight:900;color:var(--ora-blue);">${it.cap}</td>`).join('')}</tr>
+                <tr><th>권장 안전작업하중</th>${items.map(it => `<td class="mono" style="text-align:center;">약 ${Math.round(parseKg(it.cap)/1.5).toLocaleString()} kg 이하 (1.5x)</td>`).join('')}</tr>
+                <tr><th>수직 인양 가능</th>${items.map(it => `<td style="text-align:center;font-weight:800;color:${it.liftSafe ? '#059669' : '#DC2626'};">${it.liftSafe ? '가능 (브레이크 탑재)' : '수평 견인 전용'}</td>`).join('')}</tr>
+                <tr><th>로프 / 체인</th>${items.map(it => `<td class="mono" style="text-align:center;">${it.rope}</td>`).join('')}</tr>
+                <tr><th>상세 사양</th>${items.map(it => `<td style="font-size:12px;line-height:1.5;">${it.spec}</td>`).join('')}</tr>
+                <tr><th>기준 공급단가</th>${items.map(it => `<td class="mono" style="text-align:center;font-weight:900;">₩${it.price.toLocaleString()}</td>`).join('')}</tr>
+                <tr><th>즉시 실행</th>${items.map(it => `<td style="text-align:center;"><button type="button" class="pf-btn quote" style="padding:7px 12px;border-radius:6px;" onclick="closeModalById('compareModal');openInstantOfficialQuote('${it.code}')">1초 직인견적</button></td>`).join('')}</tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+      document.getElementById('compareModal').style.display = 'flex';
+    }
 
     function parseKg(capStr) {
       const s = String(capStr || '').replace(/,/g, '');
@@ -2173,11 +2647,11 @@
       if (STATE.commerceMode === 'NPAY') {
         btn.classList.add('npay-active');
         badge.innerText = 'N Pay ON';
-        lbl.innerText = '스마트스토어 하이브리드 모드';
+        lbl.innerText = '스토어 연동';
       } else {
         btn.classList.remove('npay-active');
         badge.innerText = 'B2B MODE';
-        lbl.innerText = '정통 기업 카탈로그 모드';
+        lbl.innerText = '기업 제원표';
       }
       renderCatalog();
     }
@@ -2241,13 +2715,19 @@
 
     function getFilteredCatalog() {
       const kw = (document.getElementById('catalogSearchInput')?.value || '').trim().toLowerCase();
-      return CATALOG_ITEMS.filter(it => {
-        if (STATE.direction === 'LIFT' && !it.liftSafe) return false;
+      const sortMode = document.getElementById('catalogSortSel')?.value || 'DEFAULT';
+      let res = CATALOG_ITEMS.filter(it => {
+        if ((STATE.direction === 'LIFT' || sortMode === 'LIFT_ONLY') && !it.liftSafe) return false;
         if (STATE.cat !== 'ALL' && it.cat !== STATE.cat) return false;
         if (!matchCap(it, STATE.cap)) return false;
+        if (STATE.minReqKg > 0 && parseKg(it.cap) < STATE.minReqKg) return false;
         if (!kw) return true;
         return `${it.code} ${it.series} ${it.cap} ${it.rope} ${it.spec} ${it.cat}`.toLowerCase().includes(kw);
       });
+      if (sortMode === 'CAP_ASC') res = [...res].sort((a, b) => parseKg(a.cap) - parseKg(b.cap));
+      else if (sortMode === 'CAP_DESC') res = [...res].sort((a, b) => parseKg(b.cap) - parseKg(a.cap));
+      else if (sortMode === 'PRICE_ASC') res = [...res].sort((a, b) => (a.price || 0) - (b.price || 0));
+      return res;
     }
 
     function renderCatalog() {
@@ -2257,12 +2737,18 @@
       const isNpay = STATE.commerceMode === 'NPAY';
 
       if (!list.length) {
-        box.innerHTML = `<div style="background:#fff;border:1px solid var(--ink);padding:48px;text-align:center;">
-          <h3 style="font-size:18px;margin-bottom:10px;">선택하신 조건에 일치하는 세부 모델이 없습니다.</h3>
-          <button type="button" class="view-btn active" onclick="STATE.cat='ALL';STATE.cap='ALL';STATE.direction='ALL';document.getElementById('catalogSearchInput').value='';renderFilterBars();renderCatalog();">전체 132종 모델 초기화</button>
+        box.innerHTML = `<div style="background:#fff;border:1.5px solid #BFDBFE;border-radius:10px;padding:48px;text-align:center;">
+          <h3 style="font-size:18px;margin-bottom:10px;color:var(--ora-navy);">선택하신 조건에 일치하는 세부 모델이 없습니다.</h3>
+          <button type="button" class="view-btn active" onclick="STATE.cat='ALL';STATE.cap='ALL';STATE.direction='ALL';STATE.minReqKg=0;document.getElementById('catalogSearchInput').value='';document.getElementById('catalogSortSel').value='DEFAULT';renderFilterBars();renderCatalog();">전체 ${CATALOG_ITEMS.length}종 모델 초기화</button>
         </div>`;
         return;
       }
+
+      const clearMinFilterBanner = STATE.minReqKg > 0
+        ? `<div style="background:#EFF6FF;border:1.5px solid #3B82F6;border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;">
+            <span>📐 <b>역학 계산기 필터 적용중:</b> 단선 인장력 <b>${STATE.minReqKg.toLocaleString()} kgf 이상</b> 충족 모델만 표시중</span>
+            <button type="button" class="view-btn" style="height:28px;padding:0 10px;font-size:11px;" onclick="STATE.minReqKg=0;renderCatalog()">계산 필터 해제</button>
+           </div>` : '';
 
       if (STATE.view === 'table') {
         const groups = {};
@@ -2270,12 +2756,12 @@
           if (!groups[it.series]) groups[it.series] = [];
           groups[it.series].push(it);
         });
-        box.innerHTML = Object.keys(groups).map(sName => {
+        box.innerHTML = clearMinFilterBanner + Object.keys(groups).map(sName => {
           const rows = groups[sName];
           return `<div class="series-block">
             <div class="series-block-hdr">
-              <div><span class="mono" style="background:var(--ora-red);padding:2px 8px;font-size:11px;margin-right:8px;">${rows[0].cat}</span><b>${sName}</b></div>
-              <span class="mono" style="font-size:12px;color:#9CA3AF;">${rows.length} MODELS</span>
+              <div><span class="mono" style="background:rgba(255,255,255,0.18);border:1px solid #7DD3FC;padding:2px 8px;border-radius:4px;font-size:11px;margin-right:8px;">${rows[0].cat}</span><b>${sName}</b></div>
+              <span class="mono" style="font-size:12px;color:#BAE6FD;">${rows.length} MODELS</span>
             </div>
             <div style="overflow-x:auto;">
               <table class="eng-table">
@@ -2286,21 +2772,25 @@
                     <th style="width:160px;">와이어 / 로프 규격</th>
                     <th>모터 · 전압 · 속도 · 자중 상세 사양</th>
                     ${isNpay ? '<th style="width:130px;">기준공급가(VAT포함)</th>' : ''}
-                    <th style="width:190px;text-align:center;">제원표 / 견적·결제</th>
+                    <th style="width:230px;text-align:center;">제원표 / 비교 / 견적</th>
                   </tr>
                 </thead>
                 <tbody>
-                  ${rows.map(r => `<tr>
+                  ${rows.map(r => {
+                    const inCmp = STATE.compare.includes(r.code);
+                    return `<tr>
                     <td class="mono" style="font-weight:800;color:var(--ora-navy);cursor:pointer;" onclick="openProductDetailByCode('${r.code}')">${r.code}</td>
-                    <td class="mono" style="font-weight:800;color:var(--ora-red);">${r.cap}</td>
+                    <td class="mono" style="font-weight:800;color:var(--ora-blue);">${r.cap}</td>
                     <td class="mono" style="font-weight:700;">${r.rope}</td>
                     <td style="font-size:12.5px;color:var(--text-body);">${r.spec}</td>
                     ${isNpay ? `<td class="mono" style="font-weight:800;">₩${r.price.toLocaleString()}</td>` : ''}
-                    <td style="text-align:center;">
-                      <button type="button" onclick="openProductDetailByCode('${r.code}')" style="padding:4px 8px;border:1px solid var(--ink);background:#fff;font-size:11.5px;font-weight:800;cursor:pointer;">상세/도면</button>
-                      <button type="button" onclick="openInstantOfficialQuote('${r.code}')" style="padding:4px 8px;border:none;background:var(--ora-navy);color:#fff;font-size:11.5px;font-weight:800;cursor:pointer;">직인견적</button>
+                    <td style="text-align:center;white-space:nowrap;">
+                      <button type="button" onclick="toggleCompareModel('${r.code}',event)" class="btn-cmp-mini ${inCmp ? 'active' : ''}">${inCmp ? '✓ 비교중' : '+ 비교'}</button>
+                      <button type="button" onclick="openProductDetailByCode('${r.code}')" style="padding:4px 8px;border-radius:4px;border:1px solid var(--ora-royal);background:#fff;color:var(--ora-royal);font-size:11.5px;font-weight:800;cursor:pointer;">상세</button>
+                      <button type="button" onclick="openInstantOfficialQuote('${r.code}')" style="padding:4px 8px;border-radius:4px;border:none;background:var(--ora-royal);color:#fff;font-size:11.5px;font-weight:800;cursor:pointer;">직인견적</button>
                     </td>
-                  </tr>`).join('')}
+                  </tr>`;
+                  }).join('')}
                 </tbody>
               </table>
             </div>
@@ -2309,12 +2799,17 @@
         return;
       }
 
-      box.innerHTML = `<div class="product-grid">${list.map(it => `
+      box.innerHTML = clearMinFilterBanner + `<div class="product-grid">${list.map(it => {
+        const inCmp = STATE.compare.includes(it.code);
+        return `
         <div class="prod-card">
           <div>
             <div class="prod-top-bar">
               <span class="prod-cat-label">${it.cat}</span>
-              <span class="prod-stock-label">● 당일출고 가능</span>
+              <div class="prod-top-actions">
+                <button type="button" class="btn-cmp-mini ${inCmp ? 'active' : ''}" onclick="toggleCompareModel('${it.code}',event)">${inCmp ? '✓ 비교중' : '+ 비교'}</button>
+                <span class="prod-stock-label">● 당일출고</span>
+              </div>
             </div>
             <div class="prod-img-wrap" onclick="openProductDetailByCode('${it.code}')">
               <img src="${it.img}" alt="${it.code}" onerror="this.src='${ASSET_BASE}DU-250.jpg'" />
@@ -2324,10 +2819,10 @@
               <div class="prod-series">${it.series}</div>
               <div class="prod-code-row">
                 <span class="prod-code">${it.code}</span>
-                ${isNpay && it.price > 0 ? `<span class="prod-price">₩${it.price.toLocaleString()}</span>` : `<span class="mono" style="font-size:11.5px;color:var(--ora-navy);font-weight:800;">SPEC SHEET →</span>`}
+                ${isNpay && it.price > 0 ? `<span class="prod-price">₩${it.price.toLocaleString()}</span>` : `<span class="mono" style="font-size:11.5px;color:var(--ora-blue);font-weight:800;">SPEC SHEET →</span>`}
               </div>
               <table class="prod-spec-table">
-                <tr><td class="k">정격하중</td><td class="v" style="color:var(--ora-red);">${it.cap}</td></tr>
+                <tr><td class="k">정격하중</td><td class="v" style="color:var(--ora-blue);">${it.cap}</td></tr>
                 <tr><td class="k">로프/체인</td><td class="v">${it.rope}</td></tr>
                 <tr><td class="k">핵심제원</td><td class="v" style="font-family:var(--sans);font-size:11.5px;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${it.spec}</td></tr>
               </table>
@@ -2339,7 +2834,8 @@
             ${isNpay ? `<button type="button" class="pf-btn npay" onclick="openProductDetailByCode('${it.code}')">🟩 N Pay 구매</button>` : ''}
           </div>
         </div>
-      `).join('')}</div>`;
+      `;
+      }).join('')}</div>`;
     }
 
     // 드럼 층수별 견인력 계산 시뮬레이터 (B2B 엔지니어링 신뢰도 핵심)
@@ -2767,7 +3263,10 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.js-model-count').forEach(el => { el.innerText = CATALOG_ITEMS.length; });
       updateFinderPreviewCount();
+      calcFieldPhysics();
+      renderCompareDock();
       renderFilterBars();
       renderCatalog();
     });
