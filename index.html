@@ -864,6 +864,10 @@
         text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer;
       }
       .mobile-sticky-bar .cta-q { background: var(--signal); border-right: none; }
+      .compare-dock { bottom: calc(64px + env(safe-area-inset-bottom, 0px)) !important; }
+      .modal-backdrop { padding: 10px !important; }
+      .modal-body { padding: 16px !important; }
+      .hero-h1 { font-size: clamp(26px, 7.2vw, 38px) !important; }
     }
     @media print {
       body * { visibility: hidden; }
@@ -899,7 +903,7 @@
             <a href="https://naver-store-ai-manager-production.up.railway.app/" data-local="/" target="_blank" class="suite-item"><span>스토어AI 김대리</span><span>↗</span></a>
             <a href="https://igan3w.github.io/sourcing/" data-local="/sourcing" target="_blank" class="suite-item"><span>1688 소싱랩·퀵견적</span><span>↗</span></a>
             <a href="https://igan3w.github.io/strategy/" data-local="/strategy" target="_blank" class="suite-item"><span>시장전략 AI</span><span>↗</span></a>
-            <a href="https://igan3w.github.io/notes/" data-local="/notes" target="_blank" class="suite-item"><span>노션+ 워크스페이스</span><span>↗</span></a>
+            <a href="https://igan3w.github.io/notes/" data-local="/notes" target="_blank" class="suite-item"><span>서뉴으뉴 노션</span><span>↗</span></a>
           </div>
         </div>
       </div>
@@ -960,6 +964,8 @@
       <button type="button" onclick="scrollToSec('sec-cases');toggleMobileNav()">05 · 산업 현장 적용사례</button>
       <button type="button" onclick="scrollToSec('sec-resources');toggleMobileNav()">06 · 7단계 검수·인증서·기술자료</button>
       <button type="button" onclick="scrollToSec('sec-hq');toggleMobileNav()">07 · 청계천 본사 오시는 길·견적문의</button>
+      <button type="button" onclick="toggleCommerceMode();toggleMobileNav()">전환 · B2B 제원표 ↔ N Pay 가격 모드</button>
+      <button type="button" onclick="openCompareModal();toggleMobileNav()">비교 · 선택 모델 제원 비교함 열기</button>
     </div>
   </header>
 
