@@ -143,19 +143,18 @@
     .brand-logo { height: 34px; width: auto; object-fit: contain; display: block; }
     .brand-div { width: 1px; height: 24px; background: var(--line-strong); }
     .brand-meta { display: flex; flex-direction: column; line-height: 1.2; }
-    .brand-meta .en { font-family: var(--mono); font-size: 10px; font-weight: 800; letter-spacing: 0.12em; color: var(--cobalt); }
-    .brand-meta .kr { font-size: 12.5px; font-weight: 700; color: var(--ink); margin-top: 1px; }
+    .brand-meta .kr { font-size: 13px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
 
     .gnb-nav { display: flex; align-items: center; gap: 2px; }
     .gnb-link {
       background: transparent; border: none; color: var(--ink-body);
-      font-size: 13.5px; font-weight: 700; padding: 8px 12px; border-radius: 8px;
+      font-size: 13.5px; font-weight: 700; padding: 8px 11px; border-radius: 8px;
       cursor: pointer; transition: color 0.15s, background 0.15s; white-space: nowrap;
     }
     .gnb-link:hover { color: var(--cobalt); background: var(--cobalt-soft); }
     .gnb-link.active { color: var(--cobalt); background: var(--cobalt-soft); font-weight: 800; }
 
-    .hdr-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .hdr-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
     .hdr-pill-btn {
       height: 36px; padding: 0 12px; border-radius: 8px;
       border: 1px solid var(--line-strong); background: var(--white); color: var(--ink);
@@ -163,6 +162,11 @@
       display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s var(--ease); white-space: nowrap;
     }
     .hdr-pill-btn:hover { border-color: var(--cobalt); color: var(--cobalt); background: var(--cobalt-tint); }
+    .hdr-pill-btn.catalog-btn {
+      border-color: var(--cobalt-line); background: var(--cobalt-soft); color: var(--cobalt);
+      font-weight: 800;
+    }
+    .hdr-pill-btn.catalog-btn:hover { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
     .hdr-pill-btn.npay-on { border-color: rgba(3, 199, 90, 0.45); background: #F0FDF4; color: #166534; }
     .hdr-pill-btn .badge-cnt {
       font-family: var(--mono); font-size: 11px; font-weight: 800;
@@ -192,7 +196,7 @@
       padding: 12px 18px 18px; flex-direction: column; gap: 4px; box-shadow: var(--shadow-md);
     }
     .mobile-drawer.open { display: flex; }
-    @media (min-width: 1025px) { .mobile-drawer, .mobile-bottom-bar { display: none !important; } }
+    @media (min-width: 1121px) { .mobile-drawer, .mobile-bottom-bar { display: none !important; } }
     .mobile-drawer button {
       text-align: left; padding: 11px 12px; border-radius: 8px; border: none;
       background: transparent; font-size: 14.5px; font-weight: 700; color: var(--ink); cursor: pointer;
@@ -897,7 +901,11 @@
       .qc-rail { grid-template-columns: repeat(4, 1fr); }
       .case-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 960px) {
+    @media (max-width: 1240px) {
+      .gnb-link { font-size: 12.5px; padding: 7px 8px; }
+      .header-inner { padding: 0 18px; gap: 10px; }
+    }
+    @media (max-width: 1120px) {
       .gnb-nav, .hdr-hotline, .u-hide-md { display: none !important; }
       .mobile-menu-btn { display: inline-flex; }
       .product-grid { grid-template-columns: repeat(2, 1fr); }
@@ -909,8 +917,12 @@
     @media (max-width: 720px) {
       body { padding-bottom: 66px; }
       .utility-bar { display: none; }
-      .header-inner { padding: 0 14px; height: 62px; }
+      .header-inner { padding: 0 12px; height: 62px; gap: 8px; }
+      .brand-logo { height: 28px; }
       .brand-meta, .brand-div, #commerceModeToggleBtn, #headerCompareBtn { display: none; }
+      .hdr-pill-btn { height: 34px; padding: 0 9px; font-size: 11.5px; gap: 4px; }
+      .hdr-pill-btn.catalog-btn svg { display: none; }
+      .mobile-menu-btn { height: 34px; padding: 0 10px; font-size: 12px; }
       .container, .hero-inner { padding-left: 16px; padding-right: 16px; }
       .sec { padding: 54px 0; }
       .hero-inner { padding-top: 34px; }
@@ -985,10 +997,9 @@
   <header class="site-header" id="top">
     <div class="header-inner">
       <a href="#top" class="brand-box">
-        <img id="hdrLogoImg" src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="오라테크 ORATECH" class="brand-logo" />
+        <img id="hdrLogoImg" src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="오라테크" class="brand-logo" />
         <div class="brand-div"></div>
         <div class="brand-meta">
-          <span class="en">ORATECH INDUSTRIAL</span>
           <span class="kr">운반·하역 엔지니어링 전문</span>
         </div>
       </a>
@@ -996,14 +1007,17 @@
       <nav class="gnb-nav">
         <button type="button" class="gnb-link" onclick="scrollToSec('sec-about')">회사소개</button>
         <button type="button" class="gnb-link" onclick="scrollToSec('sec-divisions')">7대 사업분야</button>
-        <button type="button" class="gnb-link" onclick="scrollToSec('sec-lab')">엔지니어링 랩</button>
-        <button type="button" class="gnb-link" onclick="scrollToSec('sec-catalog')">제품 카탈로그</button>
+        <button type="button" class="gnb-link" onclick="scrollToSec('sec-lab')">사양·하중계산</button>
         <button type="button" class="gnb-link" onclick="scrollToSec('sec-cases')">현장 적용사례</button>
         <button type="button" class="gnb-link" onclick="scrollToSec('sec-resources')">인증·기술자료</button>
         <button type="button" class="gnb-link" onclick="scrollToSec('sec-hq')">본사·문의</button>
       </nav>
 
       <div class="hdr-actions">
+        <button type="button" id="hdrCatalogBtn" class="hdr-pill-btn catalog-btn" onclick="scrollToSec('sec-catalog')">
+          <svg class="svg-ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          <span>전자카탈로그</span>
+        </button>
         <button type="button" id="commerceModeToggleBtn" class="hdr-pill-btn npay-on" onclick="toggleCommerceMode()" title="B2B 기업 카탈로그 모드와 네이버 N-Pay 결제 모드 전환">
           <span class="mono" id="commerceModeBadge" style="font-size:11px;">N Pay</span>
           <span id="commerceModeLabel">연동</span>
@@ -1028,16 +1042,16 @@
     </div>
 
     <div id="mobileDrawer" class="mobile-drawer">
-      <button type="button" onclick="scrollToSec('sec-about');toggleMobileNav()">01 · 회사소개 및 CEO 인사말</button>
-      <button type="button" onclick="scrollToSec('sec-divisions');toggleMobileNav()">02 · 7대 사업분야</button>
-      <button type="button" onclick="scrollToSec('sec-lab');toggleMobileNav()">03 · 엔지니어링 랩 (스펙·물리계산)</button>
-      <button type="button" onclick="scrollToSec('sec-catalog');toggleMobileNav()">04 · 전 모델 132종 전자카탈로그</button>
-      <button type="button" onclick="scrollToSec('sec-cases');toggleMobileNav()">05 · 산업 현장 적용사례</button>
-      <button type="button" onclick="scrollToSec('sec-resources');toggleMobileNav()">06 · 7단계 검수·인증서·기술자료</button>
-      <button type="button" onclick="scrollToSec('sec-hq');toggleMobileNav()">07 · 청계천 본사 오시는 길·견적문의</button>
-      <button type="button" onclick="toggleCommerceMode();toggleMobileNav()">전환 · B2B 제원표 ↔ N Pay 가격 모드</button>
-      <button type="button" onclick="openCompareModal();toggleMobileNav()">비교 · 선택 모델 제원 비교함 열기</button>
-      <button type="button" onclick="window.__oraPwaOpenModal();toggleMobileNav()">설치 · 스마트폰 홈화면 앱으로 추가 (PWA)</button>
+      <button type="button" onclick="scrollToSec('sec-about');toggleMobileNav()">회사소개 및 CEO 인사말</button>
+      <button type="button" onclick="scrollToSec('sec-divisions');toggleMobileNav()">7대 사업분야</button>
+      <button type="button" onclick="scrollToSec('sec-lab');toggleMobileNav()">사양 선정 · 물리 하중 계산기</button>
+      <button type="button" onclick="scrollToSec('sec-catalog');toggleMobileNav()">전 모델 132종 전자카탈로그</button>
+      <button type="button" onclick="scrollToSec('sec-cases');toggleMobileNav()">현장 적용사례</button>
+      <button type="button" onclick="scrollToSec('sec-resources');toggleMobileNav()">출고 검수 · 인증서 · 기술자료</button>
+      <button type="button" onclick="scrollToSec('sec-hq');toggleMobileNav()">청계천 본사 오시는 길 · 견적문의</button>
+      <button type="button" onclick="toggleCommerceMode();toggleMobileNav()">B2B 제원표 ↔ N Pay 가격 전환</button>
+      <button type="button" onclick="openCompareModal();toggleMobileNav()">선택 모델 제원 비교함</button>
+      <button type="button" onclick="window.__oraPwaOpenModal();toggleMobileNav()">스마트폰 홈화면 앱 설치</button>
     </div>
   </header>
 
@@ -1046,7 +1060,6 @@
     <div class="hero-inner">
       <div class="hero-grid">
         <div>
-          <div class="hero-eyebrow">ORAWINCH.CO.KR // INDUSTRIAL LIFTING &amp; PULLING ENGINEERING</div>
           <h1 class="hero-h1">
             현장의 하중에는<br />
             오차가 허락되지 않습니다.<br />
@@ -1059,7 +1072,7 @@
           </p>
           <div class="hero-cta-row">
             <button type="button" class="btn-primary-corp" onclick="scrollToSec('sec-catalog')">
-              <span>전 모델 132종 카탈로그 보기</span>
+              <span>전 모델 132종 전자카탈로그</span>
               <svg class="svg-ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
             <button type="button" class="btn-outline-light" onclick="scrollToSec('sec-lab')">
@@ -1070,7 +1083,7 @@
           <div class="hero-cred-strip">
             <span class="hero-cred-item">
               <svg class="svg-ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>수직인양·수평견인 안전 인터록 검증</span>
+              <span>수직인양·수평견인 안전 기준 검증</span>
             </span>
             <span class="hero-cred-item">
               <svg class="svg-ico" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -1082,7 +1095,7 @@
         <!-- Interactive Flagship Showcase Stage -->
         <div class="flagship-stage">
           <div class="stage-topbar">
-            <span>FLAGSHIP ENGINEERING SHOWCASE</span>
+            <span>대표 공급 장비</span>
             <span id="stageIndexTag">01 / 04</span>
           </div>
           <div class="stage-visual" id="stageVisualClick">
@@ -1124,31 +1137,30 @@
       <!-- Bottom Precision Metric Rail -->
       <div class="hero-kpi-rail">
         <div class="kpi-cell">
-          <div class="kpi-num"><span class="js-model-count" style="font-size:inherit;color:inherit;margin:0;">132</span><span>MODELS</span></div>
+          <div class="kpi-num"><span class="js-model-count" style="font-size:inherit;color:inherit;margin:0;">132</span><span>종</span></div>
           <div class="kpi-txt">전압·하중별 실측 제원표 및 외형 치수 도면 공개</div>
         </div>
         <div class="kpi-cell">
-          <div class="kpi-num">7<span>DIVISIONS</span></div>
+          <div class="kpi-num">7<span>개 분야</span></div>
           <div class="kpi-txt">윈치·호이스트·크레인·유압·무대설비 전 공정 대응</div>
         </div>
         <div class="kpi-cell">
-          <div class="kpi-num">15:00<span>DISPATCH</span></div>
+          <div class="kpi-num">15:00<span>마감</span></div>
           <div class="kpi-txt">청계천 본사 직영 재고 · 경동/대신화물·택배 당일상차</div>
         </div>
         <div class="kpi-cell">
-          <div class="kpi-num">100<span>% GENUINE</span></div>
+          <div class="kpi-num">100<span>% 정품</span></div>
           <div class="kpi-txt">모터·감속기·브레이크 순정 부품 상시 보유 및 직영 수리</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. 01 / ABOUT ORATECH (회사소개 · CEO 인사말 · 글로벌 파트너십) -->
+  <!-- 4. ABOUT ORATECH (회사소개 · CEO 인사말 · 글로벌 파트너십) -->
   <section class="sec" id="sec-about">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">01 / ABOUT ORATECH</div>
           <h2 class="sec-title">품질만족 · 가격만족 · A/S만족.<br />현장의 신뢰로 쌓아 온 운반·하역 전문기업.</h2>
         </div>
         <p class="sec-desc">
@@ -1160,7 +1172,6 @@
       <div class="about-grid">
         <!-- CEO Greeting (Authentic orawinch.co.kr Text + Real Signature) -->
         <div class="ceo-editorial">
-          <div class="ceo-quote-mark">CEO MESSAGE // ORATECH CO., LTD.</div>
           <h3 class="ceo-headline">
             “미래를 향한 최고의 품질과 책임 서비스로<br />
             항상 고객 여러분의 현장 곁에 있겠습니다.”
@@ -1218,8 +1229,7 @@
       <div class="partner-bar">
         <div class="partner-head">
           <div>
-            <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);letter-spacing:0.1em;">GLOBAL OFFICIAL PARTNERS &amp; BRANDS</div>
-            <div style="font-size:15.5px;font-weight:800;color:var(--ink);margin-top:2px;">세계 유수 운반·하역 브랜드 공식 정품 공급</div>
+            <div style="font-size:16px;font-weight:800;color:var(--ink);">세계 유수 운반·하역 브랜드 공식 정품 공급</div>
           </div>
           <button type="button" class="hdr-pill-btn" onclick="openCertLightbox()">
             <svg class="svg-ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h6"/></svg>
@@ -1239,27 +1249,22 @@
       <!-- 5 Major Industrial Client Sectors -->
       <div class="sector-strip">
         <div class="sector-chip">
-          <div class="s-en">FORESTRY</div>
           <div class="s-kr">산림청 · 산림조합 · 벌목</div>
           <div class="s-sub">급경사 원목 집재, 간벌, 소나무 재선충 방제 무전원 견인</div>
         </div>
         <div class="sector-chip">
-          <div class="s-en">POWER &amp; TELECOM</div>
           <div class="s-kr">한국전력 · 송배전 · 통신</div>
           <div class="s-sub">지중관로 케이블 포설, 송전철탑 자재 인양 및 무매연 작업</div>
         </div>
         <div class="sector-chip">
-          <div class="s-en">CONSTRUCTION</div>
           <div class="s-kr">건설 · 플랜트 · 비계양중</div>
           <div class="s-sub">단상 220V 고층 자재 양중, 삼상 380V 설비 거치 및 크레인</div>
         </div>
         <div class="sector-chip">
-          <div class="s-en">RESCUE &amp; SPECIAL</div>
           <div class="s-kr">소방 · 산악구조 · 특장차</div>
           <div class="s-sub">셀프로더·레카 IP68 방수 구난윈치, 오지 차량·장비 구조</div>
         </div>
         <div class="sector-chip">
-          <div class="s-en">STAGE &amp; LOGISTICS</div>
           <div class="s-kr">극장 무대설비 · 물류창고</div>
           <div class="s-sub">강당 무대모터·콘솔, 화물승강기, 덤웨이터, 유압 스태커</div>
         </div>
@@ -1267,16 +1272,15 @@
     </div>
   </section>
 
-  <!-- 5. 02 / 7 BUSINESS DIVISIONS (orawinch.co.kr 정통 7대 사업영역) -->
+  <!-- 5. 7 BUSINESS DIVISIONS -->
   <section class="sec concrete" id="sec-divisions">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">02 / 7 CORE BUSINESS DIVISIONS</div>
           <h2 class="sec-title">오라테크 7대 정통 사업분야</h2>
         </div>
         <p class="sec-desc">
-          orawinch.co.kr의 전 품목 체계를 그대로 계승했습니다. 사업 카드를 클릭하면 해당 세부 라인업 제원표로 즉시 이동합니다.
+          윈치·호이스트·크레인부터 특수 제작·시공까지 7개 전문 분야로 대응합니다. 카드를 클릭하면 세부 라인업 제원표로 이동합니다.
         </p>
       </div>
 
@@ -1284,7 +1288,7 @@
         <div class="div-card featured" onclick="filterByCategory('엔진윈치')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 01 // WINCH SYSTEMS</span>
+              <span class="div-code">01 · 윈치 시스템</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
               </div>
@@ -1299,7 +1303,7 @@
         <div class="div-card" onclick="filterByCategory('호이스트')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 02 // HOIST</span>
+              <span class="div-code">02 · 호이스트</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><path d="M12 3v10"/><path d="M8 13h8v4a4 4 0 0 1-8 0v-4z"/><path d="M9 3h6"/></svg>
               </div>
@@ -1314,7 +1318,7 @@
         <div class="div-card" onclick="prefillDivisionInquiry('산업용 크레인 (오버헤드/겐트리/지브/서스펜션) 제작·설치 문의')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 03 // CRANE</span>
+              <span class="div-code">03 · 크레인</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 21V5l14 4"/><path d="M16 8v6"/><path d="M14 14h4"/></svg>
               </div>
@@ -1329,7 +1333,7 @@
         <div class="div-card" onclick="filterByCategory('수동하역제품')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 04 // MANUAL RIGGING</span>
+              <span class="div-code">04 · 수동 하역</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="12" r="4"/></svg>
               </div>
@@ -1344,7 +1348,7 @@
         <div class="div-card" onclick="filterByCategory('운반하역유압')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 05 // HYDRAULIC</span>
+              <span class="div-code">05 · 유압 운반</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><path d="M3 17h13V6H3z"/><path d="M16 11h4l1 3v3h-5"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
               </div>
@@ -1359,7 +1363,7 @@
         <div class="div-card" onclick="prefillDivisionInquiry('무대설치용 장비 (극장/강당 무대모터·콘솔·액세서리) 문의')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 06 // STAGE RIGGING</span>
+              <span class="div-code">06 · 무대 설비</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M6 6v12M18 6v12"/><path d="M9 10h6v5H9z"/></svg>
               </div>
@@ -1374,7 +1378,7 @@
         <div class="div-card" onclick="prefillDivisionInquiry('제작·설치 턴키 시공 (화물승강기 / 덤웨이터 / 호이스트크레인) 문의')">
           <div>
             <div class="div-top">
-              <span class="div-code">DIV 07 // TURNKEY PROJECTS</span>
+              <span class="div-code">07 · 맞춤 시공</span>
               <div class="div-ico-box">
                 <svg class="svg-ico svg-ico-lg" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
               </div>
@@ -1389,16 +1393,15 @@
     </div>
   </section>
 
-  <!-- 6. 03 / ENGINEERING LAB (10초 스펙 파인더 + 동적 SVG 물리 시뮬레이터 + Carbon AI) -->
+  <!-- 6. ENGINEERING LAB -->
   <section class="sec lab-azure" id="sec-lab">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">03 / ENGINEERING LAB &amp; LOAD SIMULATOR</div>
           <h2 class="sec-title">현장 조건을 입력하면, 물리 공식으로 정확한 기종을 도출합니다.</h2>
         </div>
         <p class="sec-desc">
-          경사각, 지면 마찰계수, 도르래 배력, 수직 인양 브레이크 안전 인터록을 실시간 계산하여
+          경사각, 지면 마찰계수, 도르래 배력, 수직 인양 브레이크 안전 기준을 실시간 계산하여
           과부하 사고와 오선정 비용을 사전에 차단합니다.
         </p>
       </div>
@@ -1412,7 +1415,7 @@
                 <button type="button" id="heroTabPhysicsBtn" class="lab-tab active" onclick="switchHeroToolMode('physics')">경사·도르래 물리 계산기</button>
                 <button type="button" id="heroTabFinderBtn" class="lab-tab" onclick="switchHeroToolMode('finder')">10초 조건 스펙 파인더</button>
               </div>
-              <span class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);background:var(--cobalt-soft);border:1px solid var(--cobalt-line);padding:3px 9px;border-radius:4px;">SAFETY FACTOR 1.35x~1.5x</span>
+              <span class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);background:var(--cobalt-soft);border:1px solid var(--cobalt-line);padding:3px 9px;border-radius:4px;">안전율 1.35~1.5배 적용</span>
             </div>
 
             <!-- Panel A: Live SVG Physics Load Simulator -->
@@ -1427,17 +1430,17 @@
                   <input type="range" id="phySlope" min="0" max="90" step="5" value="30" style="width:100%;height:42px;accent-color:var(--cobalt);cursor:pointer;" oninput="calcFieldPhysics()" />
                 </div>
                 <div class="f-group">
-                  <div class="f-lbl"><span>지면 마찰계수 (μ)</span><span class="code">SURFACE</span></div>
+                  <div class="f-lbl"><span>지면 마찰계수 (μ)</span></div>
                   <select id="phyFriction" class="f-select" onchange="calcFieldPhysics()">
                     <option value="0.05">바퀴/레일 구름 (μ = 0.05)</option>
                     <option value="0.25">콘크리트/자갈 끌기 (μ = 0.25)</option>
                     <option value="0.45" selected>산림 비포장/통나무 (μ = 0.45)</option>
                     <option value="0.70">진흙/늪지/급경사 (μ = 0.70)</option>
-                    <option value="0.00">수직 공중 인양 (90° Lifting)</option>
+                    <option value="0.00">수직 공중 인양 (90°)</option>
                   </select>
                 </div>
                 <div class="f-group">
-                  <div class="f-lbl"><span>도르래 배력 세팅</span><span class="code">RIGGING</span></div>
+                  <div class="f-lbl"><span>도르래 배력 세팅</span></div>
                   <select id="phyPulley" class="f-select" onchange="calcFieldPhysics()">
                     <option value="1" selected>1:1 직선 단선 견인</option>
                     <option value="2">2:1 스윙 도르래 1개 (필요힘 1/2)</option>
@@ -1449,8 +1452,8 @@
               <!-- Live Dynamic SVG Slope & Tension Blueprint -->
               <div class="phy-svg-box">
                 <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:#7DB4E8;margin-bottom:6px;">
-                  <span>LIVE RIGGING VECTOR // F = W × (sin θ + μ·cos θ) ÷ n</span>
-                  <span id="phySvgModeTag">SLOPE 30° · 1:1 SINGLE LINE</span>
+                  <span>계산식: F = W × (sin θ + μ·cos θ) ÷ n</span>
+                  <span id="phySvgModeTag">경사 30° · 1:1 단선</span>
                 </div>
                 <svg id="phyBlueprintSvg" viewBox="0 0 520 155" style="width:100%;height:auto;display:block;"></svg>
               </div>
@@ -1459,14 +1462,14 @@
 
               <button type="button" class="lab-submit-btn" onclick="applyPhysicsFilterToCatalog()">
                 <span>이 계산 하중을 충족하는 모델만 카탈로그에 필터링</span>
-                <span class="tag" id="phyMatchBtnTag">0 MODELS →</span>
+                <span class="tag" id="phyMatchBtnTag">0종 보기 →</span>
               </button>
             </div>
 
             <!-- Panel B: 10-Second Spec Finder -->
             <div id="heroPanelFinder" style="display:none;">
               <div class="f-group">
-                <div class="f-lbl"><span>STEP 01. 작업 방향 (안전 제동 메커니즘)</span><span class="code" id="finderDirCode">PULLING / LIFTING</span></div>
+                <div class="f-lbl"><span>1. 작업 방향 (안전 제동 구분)</span><span class="code" id="finderDirCode">견인 · 인양 전체</span></div>
                 <div class="dir-grid">
                   <button type="button" class="dir-btn active" id="dirBtnAll" onclick="setFinderDirection('ALL')">
                     <span class="t">전체 작업 (견인 + 인양)</span>
@@ -1479,7 +1482,7 @@
                 </div>
               </div>
               <div class="f-group">
-                <div class="f-lbl"><span>STEP 02. 현장 전원 및 장비군</span><span class="code">POWER SOURCE</span></div>
+                <div class="f-lbl"><span>2. 현장 전원 및 장비군</span></div>
                 <select id="finderCatSel" class="f-select" onchange="updateFinderPreviewCount()">
                   <option value="ALL">전체 장비군 (전원·방식 무관)</option>
                   <option value="엔진윈치">무전원 야외·산림 (혼다 엔진 / 82V 배터리 캡스턴)</option>
@@ -1492,7 +1495,7 @@
                 </select>
               </div>
               <div class="f-group">
-                <div class="f-lbl"><span>STEP 03. 목표 작업 하중 (안전율 고려)</span><span class="code">RATED CAPACITY</span></div>
+                <div class="f-lbl"><span>3. 목표 작업 하중 (안전율 고려)</span></div>
                 <select id="finderCapSel" class="f-select" onchange="updateFinderPreviewCount()">
                   <option value="ALL">전체 정격 하중 (80kg ~ 10Ton)</option>
                   <option value="LIGHT">경량 양중 (~ 250kg 이하)</option>
@@ -1502,22 +1505,22 @@
                 </select>
               </div>
               <div class="safety-note">
-                <b>안전 인터록 원칙:</b> 엔진 견인 윈치(PCW-5000 등)는 수평·경사 견인 전용입니다. 무전원 수직 인양이 필요한 경우 공인 로프그립 브레이크가 내장된 <b>PCH-1000 / PCH-2000</b> 또는 마그네틱 브레이크 전동윈치·호이스트를 선정합니다.
+                <b>안전 기준 안내:</b> 엔진 견인 윈치(PCW-5000 등)는 수평·경사 견인 전용입니다. 무전원 수직 인양이 필요한 경우 공인 로프그립 브레이크가 내장된 <b>PCH-1000 / PCH-2000</b> 또는 마그네틱 브레이크 전동윈치·호이스트를 선정합니다.
               </div>
               <button type="button" class="lab-submit-btn" onclick="executeQuickFinder()">
                 <span>조건에 맞는 검증 모델 즉시 조회</span>
-                <span class="tag" id="finderMatchCountBadge">132 MODELS →</span>
+                <span class="tag" id="finderMatchCountBadge">132종 보기 →</span>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Right: Gemini 4 Carbon Field Engineer Consultant -->
+        <!-- Right: AI Field Engineer Consultant -->
         <div class="lab-panel dark-bp">
           <div>
             <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;">
-              <span class="mono" style="font-size:11px;font-weight:800;color:#7DB4E8;letter-spacing:0.12em;">AI FIELD ENGINEER CONSULTANT</span>
-              <span class="mono" style="font-size:10.5px;color:#34D399;border:1px solid rgba(52,211,153,0.35);padding:2px 8px;border-radius:4px;">SAFETY INTERLOCK ON</span>
+              <span style="font-size:12px;font-weight:800;color:#93C5FD;">AI 현장 장비 추천</span>
+              <span style="font-size:11px;font-weight:700;color:#6EE7B7;border:1px solid rgba(110,231,183,0.4);padding:2px 8px;border-radius:4px;">수직 인양 안전 검증</span>
             </div>
             <h3 style="font-size:21px;font-weight:800;color:#FFFFFF;margin-bottom:8px;letter-spacing:-0.02em;">현장 작업 조건을 말씀해 주시면 적합한 모델과 필수 부자재를 설계해 드립니다.</h3>
             <p style="font-size:13.5px;color:#E0F2FE;line-height:1.65;">
@@ -1553,12 +1556,11 @@
     </div>
   </section>
 
-  <!-- 7. 04 / MASTER CATALOG (132 MODELS) -->
+  <!-- 7. MASTER CATALOG -->
   <section class="sec concrete" id="sec-catalog">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">04 / MASTER ENGINEERING CATALOG</div>
           <h2 class="sec-title">전 모델 정밀 전자카탈로그 (<span class="js-model-count">132</span>종)</h2>
         </div>
         <p class="sec-desc">
@@ -1590,12 +1592,11 @@
     </div>
   </section>
 
-  <!-- 8. 05 / FIELD CASE STUDIES (현장 적용사례 및 패키지) -->
+  <!-- 8. FIELD CASE STUDIES -->
   <section class="sec" id="sec-cases">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">05 / FIELD APPLICATION &amp; PACKAGES</div>
           <h2 class="sec-title">현장별 검증 완료 패키지 &amp; 실전 운용 사례</h2>
         </div>
         <p class="sec-desc">
@@ -1608,7 +1609,7 @@
         <div class="case-card">
           <div class="case-photo">
             <img id="caseImg1" src="https://igan3w.github.io/studio/ora_assets/site_single_timber_skid.jpg" alt="산림 벌목 원목집재" />
-            <span class="case-tag">CASE 01 // FORESTRY</span>
+            <span class="case-tag">산림 · 벌목</span>
           </div>
           <div class="case-body">
             <div>
@@ -1628,7 +1629,7 @@
         <div class="case-card">
           <div class="case-photo">
             <img id="caseImg2" src="https://igan3w.github.io/studio/ora_assets/site_single_telecom_cable.jpg" alt="지하관로 송배전 무매연 케이블포설" />
-            <span class="case-tag">CASE 02 // POWER &amp; TUNNEL</span>
+            <span class="case-tag">한전 · 지하관로</span>
           </div>
           <div class="case-body">
             <div>
@@ -1648,7 +1649,7 @@
         <div class="case-card">
           <div class="case-photo">
             <img id="caseImg3" src="https://igan3w.github.io/studio/ora_assets/site_single_scaffold_pipe.jpg" alt="건설현장 고층 비계 자재양중" />
-            <span class="case-tag">CASE 03 // CONSTRUCTION</span>
+            <span class="case-tag">건설 · 양중</span>
           </div>
           <div class="case-body">
             <div>
@@ -1668,7 +1669,7 @@
         <div class="case-card">
           <div class="case-photo">
             <img id="caseImg4" src="https://igan3w.github.io/studio/ora_assets/site_single_mud_recovery.jpg" alt="특장차 중장비 산악 구난" />
-            <span class="case-tag">CASE 04 // HEAVY RECOVERY</span>
+            <span class="case-tag">특장 · 구난</span>
           </div>
           <div class="case-body">
             <div>
@@ -1688,12 +1689,11 @@
     </div>
   </section>
 
-  <!-- 9. 06 / 7-STEP QUALITY PROTOCOL & TECHNICAL RESOURCE CENTER -->
+  <!-- 9. QUALITY PROTOCOL & TECHNICAL RESOURCE CENTER -->
   <section class="sec dark" id="sec-resources">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">06 / QUALITY PROTOCOL &amp; TECHNICAL LIBRARY</div>
           <h2 class="sec-title">출고 전 7단계 정밀 검수 &amp; 엔지니어링 기술자료실</h2>
         </div>
         <p class="sec-desc">
@@ -1702,13 +1702,13 @@
       </div>
 
       <div class="qc-rail">
-        <div class="qc-step"><div class="n">STEP 01</div><h4>정격 부하 점검</h4><p>1단 정격 견인·인양력 실측 확인</p></div>
-        <div class="qc-step"><div class="n">STEP 02</div><h4>브레이크 제동</h4><p>정전·무부하 즉시 잠금 및 밀림 0% 검증</p></div>
-        <div class="qc-step"><div class="n">STEP 03</div><h4>모터·절연 검사</h4><p>전압/전류 정상치 및 절연저항 테스트</p></div>
-        <div class="qc-step"><div class="n">STEP 04</div><h4>감속기·기어박스</h4><p>이상 진동·소음 및 오일 유량 점검</p></div>
-        <div class="qc-step"><div class="n">STEP 05</div><h4>로프·와이어 정렬</h4><p>드럼 소선 상태 및 후크 걸쇠 안전 점검</p></div>
-        <div class="qc-step"><div class="n">STEP 06</div><h4>리모컨·시운전</h4><p>유무선 스위치 및 리미트 차단 실전 구동</p></div>
-        <div class="qc-step"><div class="n">STEP 07</div><h4>정품 시리얼 등록</h4><p>본사 A/S 이력 등록 및 안전가이드 동봉</p></div>
+        <div class="qc-step"><div class="n">1단계</div><h4>정격 부하 점검</h4><p>1단 정격 견인·인양력 실측 확인</p></div>
+        <div class="qc-step"><div class="n">2단계</div><h4>브레이크 제동</h4><p>정전·무부하 즉시 잠금 및 밀림 0% 검증</p></div>
+        <div class="qc-step"><div class="n">3단계</div><h4>모터·절연 검사</h4><p>전압/전류 정상치 및 절연저항 테스트</p></div>
+        <div class="qc-step"><div class="n">4단계</div><h4>감속기·기어박스</h4><p>이상 진동·소음 및 오일 유량 점검</p></div>
+        <div class="qc-step"><div class="n">5단계</div><h4>로프·와이어 정렬</h4><p>드럼 소선 상태 및 후크 걸쇠 안전 점검</p></div>
+        <div class="qc-step"><div class="n">6단계</div><h4>리모컨·시운전</h4><p>유무선 스위치 및 리미트 차단 실전 구동</p></div>
+        <div class="qc-step"><div class="n">7단계</div><h4>정품 시리얼 등록</h4><p>본사 A/S 이력 등록 및 안전가이드 동봉</p></div>
       </div>
 
       <div class="res-tabs">
@@ -1724,10 +1724,9 @@
           <div style="background:linear-gradient(180deg, #F6FAFF 0%, #FFFFFF 100%);border:1px solid #C8DCF5;border-top:4px solid var(--cobalt);border-radius:12px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;">
             <div>
               <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
-                <span class="mono" style="font-size:10.5px;font-weight:800;color:var(--cobalt);letter-spacing:.08em;">AUTHORIZED IMPORTER</span>
-                <span style="font-size:11px;font-weight:800;color:#0F766E;background:#CCFBF1;padding:3px 9px;border-radius:999px;">정품 보증 인증</span>
+                <span style="font-size:15.5px;font-weight:900;color:var(--ink);letter-spacing:-0.02em;">(주)오라테크 · 정품 수입·기술지원</span>
+                <span style="font-size:11px;font-weight:800;color:#0F766E;background:#CCFBF1;padding:3px 9px;border-radius:999px;white-space:nowrap;">정품 보증 인증</span>
               </div>
-              <div style="font-size:16px;font-weight:900;color:var(--ink);letter-spacing:-0.02em;margin-bottom:8px;">(주)오라테크 · 공식 정품 수입·기술지원</div>
               <div style="background:#FFFFFF;border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;" onclick="openCertLightbox()">
                 <img id="resCertImg" src="https://igan3w.github.io/studio/ora_assets/cert_dealer_oratech.jpg" alt="오라테크 공식 수입원 인증 배너" style="width:100%;height:auto;display:block;object-fit:contain;" />
               </div>
@@ -1747,7 +1746,6 @@
             </button>
           </div>
           <div>
-            <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);margin-bottom:6px;">PUBLIC PROCUREMENT &amp; B2B COMPLIANCE</div>
             <h3 style="font-size:20px;font-weight:800;margin-bottom:12px;">관공서 · 나라장터(G2B) · 기업 수의계약 행정서류 즉시 지원</h3>
             <p style="font-size:13.5px;color:var(--ink-body);line-height:1.7;margin-bottom:16px;">
               산림조합, 한국전력공사, 지자체, 대기업 공무팀의 지출결의 및 검수에 필요한 공식 서류 일체를 당일 즉시 발행해 드립니다.
@@ -1767,7 +1765,6 @@
 
       <!-- Resource Tab 2: Cable & Generator -->
       <div class="res-panel" id="resPanel_cable">
-        <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);margin-bottom:6px;">ELECTRICAL VOLTAGE DROP PREVENTION</div>
         <h3 style="font-size:19px;font-weight:800;margin-bottom:8px;">전동윈치 · 호이스트 연장 전선 거리별 권장 굵기(sq) &amp; 야외 발전기 용량</h3>
         <p style="font-size:13px;color:var(--ink-muted);margin-bottom:16px;">현장 모터 출력 저하 및 콘덴서 소손의 대부분은 가는 릴선 사용으로 인한 전압강하(Voltage Drop)가 원인입니다.</p>
         <div style="overflow-x:auto;">
@@ -1789,7 +1786,6 @@
 
       <!-- Resource Tab 3: Fuel & Rope -->
       <div class="res-panel" id="resPanel_fuel">
-        <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);margin-bottom:6px;">ENGINE LUBRICATION &amp; ROPE SAFETY STANDARD</div>
         <h3 style="font-size:19px;font-weight:800;margin-bottom:14px;">엔진윈치 4행정 / 2행정 연료·오일 규격 및 로프 안전 기준</h3>
         <div style="overflow-x:auto;">
           <table class="eng-table" style="border:1px solid var(--line);">
@@ -1807,7 +1803,6 @@
 
       <!-- Resource Tab 4: Direct A/S -->
       <div class="res-panel" id="resPanel_as">
-        <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);margin-bottom:6px;">CHEONGGYECHEON DIRECT SERVICE CENTER</div>
         <h3 style="font-size:19px;font-weight:800;margin-bottom:14px;">청계천 본사 직영 정비센터 A/S 접수 및 명판 1분 매칭</h3>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px;">
           <div style="background:var(--concrete);border:1px solid var(--line);border-radius:6px;padding:16px;">
@@ -1834,12 +1829,11 @@
     </div>
   </section>
 
-  <!-- 10. 07 / HEADQUARTERS, DIRECTIONS & LIVE B2B INQUIRY -->
+  <!-- 10. HEADQUARTERS, DIRECTIONS & LIVE B2B INQUIRY -->
   <section class="sec concrete" id="sec-hq">
     <div class="container">
       <div class="sec-head">
         <div>
-          <div class="sec-kicker">07 / HEADQUARTERS &amp; CONTACT</div>
           <h2 class="sec-title">청계천 본사 오시는 길 &amp; B2B 공식 견적 문의</h2>
         </div>
         <p class="sec-desc">
@@ -1852,8 +1846,7 @@
         <div class="hq-card">
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--obsidian);padding-bottom:16px;margin-bottom:18px;">
             <div>
-              <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);">HEADQUARTERS · SHOWROOM · A/S CENTER</div>
-              <h3 style="font-size:21px;font-weight:800;color:var(--ink);margin-top:2px;">오라테크 (ORATECH) 청계천 본사</h3>
+              <h3 style="font-size:21px;font-weight:800;color:var(--ink);">오라테크 (ORATECH) 청계천 본사</h3>
             </div>
             <img id="hqLogoImg" src="https://igan3w.github.io/studio/ora_assets/ci_ora_logo.png" alt="오라테크" style="height:30px;object-fit:contain;" />
           </div>
@@ -1890,7 +1883,7 @@
           </table>
 
           <!-- Exact Subway Directions from orawinch.co.kr/introduction/r02.htm -->
-          <div class="mono" style="font-size:11px;font-weight:800;color:var(--cobalt);letter-spacing:0.08em;margin-bottom:8px;">SUBWAY &amp; WALKING DIRECTIONS (청계천 수표교 앞)</div>
+          <div style="font-size:12px;font-weight:800;color:var(--cobalt);margin-bottom:8px;">지하철 도보 안내 (청계천 수표교 앞)</div>
           <div class="transit-list">
             <div class="transit-item">
               <span><span class="subway-badge" style="background:#00A84D;">2호선</span><b>을지로3가역 ①·②번 출구</b></span>
@@ -1916,8 +1909,7 @@
         <!-- Right: Live B2B Inquiry Form -->
         <div class="hq-card">
           <div style="border-bottom:2px solid var(--obsidian);padding-bottom:16px;margin-bottom:18px;">
-            <div class="mono" style="font-size:11px;font-weight:800;color:var(--signal);">ONLINE QUOTATION &amp; TECHNICAL CONSULTATION</div>
-            <h3 style="font-size:21px;font-weight:800;color:var(--ink);margin-top:2px;">B2B 공식 견적 · 대량발주 · 특주 상담 접수</h3>
+            <h3 style="font-size:21px;font-weight:800;color:var(--ink);">B2B 공식 견적 · 대량발주 · 특주 상담 접수</h3>
           </div>
 
           <div class="hq-form-row">
@@ -1972,7 +1964,7 @@
         </p>
       </div>
       <div>
-        <div class="footer-col-title">PRODUCT DIVISIONS</div>
+        <div class="footer-col-title">주요 취급 품목</div>
         <div class="footer-links">
           <button type="button" onclick="filterByCategory('엔진윈치')">엔진 · 82V 배터리 캡스턴 윈치</button>
           <button type="button" onclick="filterByCategory('전동윈치')">산업용 AC 220V / 380V 전동윈치</button>
@@ -1983,7 +1975,7 @@
         </div>
       </div>
       <div>
-        <div class="footer-col-title">TECHNICAL HOTLINE</div>
+        <div class="footer-col-title">대표전화 · 현장 A/S</div>
         <div class="mono" style="font-size:26px;font-weight:800;color:#FFFFFF;margin-bottom:4px;">1600-5157</div>
         <div class="mono" style="font-size:13.5px;color:#93C5FD;font-weight:700;margin-bottom:10px;">현장·명판 직통 010-8931-7788</div>
         <p style="font-size:12.5px;line-height:1.65;">
@@ -1993,14 +1985,13 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© ORATECH. All Rights Reserved. Official Website (www.orawinch.co.kr / www.orawinch.com)</span>
-      <span class="mono">PRECISION LIFTING &amp; PULLING STANDARD</span>
+      <span>© ORATECH. All Rights Reserved. (www.orawinch.co.kr / www.orawinch.com)</span>
     </div>
   </footer>
 
   <!-- FLOATING COMPARE DOCK -->
   <div id="compareDock" class="compare-dock">
-    <span class="mono" style="font-size:11.5px;font-weight:800;color:#7DB4E8;">SPEC COMPARE</span>
+    <span style="font-size:12px;font-weight:800;color:#93C5FD;">모델 비교</span>
     <div id="compareDockChips" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
     <button type="button" onclick="openCompareModal()" style="padding:6px 12px;border-radius:5px;border:none;background:var(--signal);color:#fff;font-size:12px;font-weight:700;cursor:pointer;">비교표 열기</button>
     <button type="button" onclick="clearCompareModels()" style="padding:6px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.22);background:transparent;color:#CBD5E1;font-size:11.5px;cursor:pointer;">초기화</button>
@@ -2017,7 +2008,7 @@
   <div id="pdpModal" class="modal-backdrop" onclick="if(event.target===this) closeModalById('pdpModal')">
     <div class="modal-box">
       <div class="modal-hdr">
-        <span class="title" id="pdpModalTitle">SPECIFICATION SHEET</span>
+        <span class="title" id="pdpModalTitle">상세 제원표</span>
         <button type="button" class="modal-close" onclick="closeModalById('pdpModal')">닫기 (ESC)</button>
       </div>
       <div class="modal-body" id="pdpModalBody"></div>
@@ -2028,7 +2019,7 @@
   <div id="compareModal" class="modal-backdrop" onclick="if(event.target===this) closeModalById('compareModal')">
     <div class="modal-box">
       <div class="modal-hdr">
-        <span class="title">SIDE-BY-SIDE ENGINEERING COMPARISON (MAX 3 MODELS)</span>
+        <span class="title">모델별 제원 비교표 (최대 3종)</span>
         <button type="button" class="modal-close" onclick="closeModalById('compareModal')">닫기</button>
       </div>
       <div class="modal-body" id="compareModalBody"></div>
@@ -2039,7 +2030,7 @@
   <div id="officialQuotePrintModal" class="modal-backdrop" onclick="if(event.target===this) closeModalById('officialQuotePrintModal')">
     <div class="modal-box" style="max-width:860px;">
       <div class="modal-hdr no-print">
-        <span class="title">OFFICIAL B2B &amp; G2B QUOTATION GENERATOR</span>
+        <span class="title">공식 직인 견적서 발행</span>
         <div style="display:flex;gap:8px;">
           <button type="button" class="modal-close" style="background:var(--signal);border-color:var(--signal);" onclick="window.print()">PDF 저장 / A4 인쇄</button>
           <button type="button" class="modal-close" onclick="closeModalById('officialQuotePrintModal')">닫기</button>
@@ -2053,7 +2044,7 @@
   <div id="quoteCartModal" class="modal-backdrop" onclick="if(event.target===this) closeModalById('quoteCartModal')">
     <div class="modal-box" style="max-width:840px;">
       <div class="modal-hdr">
-        <span class="title">B2B QUOTATION CART &amp; MULTI-ITEM PRINT</span>
+        <span class="title">견적서함 · 통합 견적 인쇄</span>
         <button type="button" class="modal-close" onclick="closeModalById('quoteCartModal')">닫기</button>
       </div>
       <div class="modal-body" id="quoteCartBody"></div>
@@ -2064,7 +2055,7 @@
   <div id="certModal" class="modal-backdrop" onclick="if(event.target===this) closeModalById('certModal')">
     <div class="modal-box" style="max-width:680px;">
       <div class="modal-hdr">
-        <span class="title">OFFICIAL AUTHORIZED DEALER CERTIFICATE — ORATECH</span>
+        <span class="title">(주)오라테크 공식 수입원 정품 인증</span>
         <button type="button" class="modal-close" onclick="closeModalById('certModal')">닫기</button>
       </div>
       <div class="modal-body" style="text-align:center;background:var(--concrete);">
@@ -2452,7 +2443,7 @@
       const capEl = document.getElementById('stageCapTag'); if (capEl) capEl.textContent = it.cap;
       const safeEl = document.getElementById('stageSafetyTag');
       if (safeEl) {
-        safeEl.textContent = it.liftSafe ? 'LIFTING CERTIFIED' : 'HORIZONTAL PULLING';
+        safeEl.textContent = it.liftSafe ? '수직 인양 공인' : '수평 견인 전용';
         safeEl.style.color = it.liftSafe ? '#0E7A55' : '#475569';
         safeEl.style.background = it.liftSafe ? '#ECFDF5' : '#F1F5F9';
         safeEl.style.borderColor = it.liftSafe ? '#A7F3D0' : '#CBD5E1';
@@ -2506,14 +2497,14 @@
           <rect x="64" y="16" width="368" height="10" rx="2" fill="rgba(148,163,184,0.28)" stroke="rgba(148,163,184,0.6)" stroke-width="1" />
           <line x1="24" y1="144" x2="496" y2="144" stroke="rgba(148,163,184,0.28)" stroke-width="1" stroke-dasharray="4,4" />
           <rect x="${cx - 32}" y="22" width="64" height="24" rx="4" fill="#0F4C81" stroke="#93C5FD" stroke-width="1.5" />
-          <text x="${cx}" y="37" font-size="9" font-weight="800" fill="#fff" text-anchor="middle" font-family="JetBrains Mono">HOIST</text>
+          <text x="${cx}" y="37" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" font-family="Pretendard, sans-serif">호이스트</text>
           ${pulleySvg}
           <rect x="${cx - 34}" y="106" width="68" height="26" rx="3" fill="#D94F1E" stroke="#FDBA74" stroke-width="1.3" />
           <text x="${cx}" y="122" font-size="10" font-weight="800" fill="#fff" text-anchor="middle" font-family="JetBrains Mono">${w.toLocaleString()}kg</text>
           <path d="M${cx + 58} 118 L${cx + 58} 60 M${cx + 53} 67 L${cx + 58} 58 L${cx + 63} 67" fill="none" stroke="#34D399" stroke-width="1.8" />
-          <text x="${cx + 68}" y="92" font-size="9.5" font-weight="700" fill="#34D399" font-family="JetBrains Mono">90° LIFT</text>
-          <text x="32" y="136" font-size="10.5" font-weight="800" fill="#FCA5A5" font-family="JetBrains Mono">BRAKE LOCK REQUIRED</text>
-          <text x="492" y="24" font-size="11.5" font-weight="800" fill="#34D399" text-anchor="end" font-family="JetBrains Mono">REQ: ${safeReqSingle.toLocaleString()} kgf</text>
+          <text x="${cx + 68}" y="92" font-size="9.5" font-weight="700" fill="#34D399" font-family="Pretendard, sans-serif">수직 인양</text>
+          <text x="32" y="136" font-size="10.5" font-weight="800" fill="#FCA5A5" font-family="Pretendard, sans-serif">브레이크 제동 필수</text>
+          <text x="492" y="24" font-size="11.5" font-weight="800" fill="#34D399" text-anchor="end" font-family="Pretendard, JetBrains Mono, sans-serif">필요 하중: ${safeReqSingle.toLocaleString()} kgf</text>
         `;
         return;
       }
@@ -2547,10 +2538,10 @@
         </g>
         <g transform="translate(${wx.toFixed(1)},${(wy - 12).toFixed(1)})">
           <rect x="-26" y="-12" width="52" height="24" rx="4" fill="#0F4C81" stroke="#93C5FD" stroke-width="1.5" />
-          <text x="0" y="3" font-size="9" font-weight="800" fill="#fff" text-anchor="middle" font-family="JetBrains Mono">WINCH</text>
+          <text x="0" y="3" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle" font-family="Pretendard, sans-serif">윈치</text>
         </g>
         <text x="${x0 + 18}" y="${y0 - 7}" font-size="11" font-weight="800" fill="#93C5FD" font-family="JetBrains Mono">θ = ${deg}°</text>
-        <text x="492" y="24" font-size="11.5" font-weight="800" fill="#34D399" text-anchor="end" font-family="JetBrains Mono">REQ: ${safeReqSingle.toLocaleString()} kgf</text>
+        <text x="492" y="24" font-size="11.5" font-weight="800" fill="#34D399" text-anchor="end" font-family="Pretendard, JetBrains Mono, sans-serif">필요 하중: ${safeReqSingle.toLocaleString()} kgf</text>
       `;
     }
 
@@ -2571,7 +2562,7 @@
       LAST_PHYSICS_IS_VERTICAL = isVertical;
 
       const svgTag = document.getElementById('phySvgModeTag');
-      if (svgTag) svgTag.textContent = `${isVertical ? 'VERTICAL 90° LIFT' : 'SLOPE ' + deg + '°'} · ${pulley}:1 RIGGING`;
+      if (svgTag) svgTag.textContent = `${isVertical ? '수직 90° 인양' : '경사 ' + deg + '°'} · ${pulley}:1 ${pulley === 1 ? '단선' : '배력'}`;
       renderPhysicsBlueprintSvg(deg, w, safeReqSingle, pulley, isVertical);
 
       const matched = CATALOG_ITEMS.filter(it => {
@@ -2591,7 +2582,7 @@
           </div>`;
       }
       const badge = document.getElementById('phyMatchBtnTag');
-      if (badge) badge.textContent = `${matched.length} MODELS →`;
+      if (badge) badge.textContent = `${matched.length}종 보기 →`;
     }
 
     function applyPhysicsFilterToCatalog() {
@@ -2645,7 +2636,7 @@
       const bLift = document.getElementById('dirBtnLift');
       bLift.classList.toggle('active', dir === 'LIFT');
       bLift.classList.toggle('lift-mode', dir === 'LIFT');
-      document.getElementById('finderDirCode').textContent = dir === 'LIFT' ? 'VERTICAL LIFTING ONLY' : 'PULLING / LIFTING';
+      document.getElementById('finderDirCode').textContent = dir === 'LIFT' ? '수직 인양 전용' : '견인 · 인양 전체';
       updateFinderPreviewCount();
     }
     function updateFinderPreviewCount() {
@@ -2657,7 +2648,7 @@
         if (!matchCap(it, cap)) return false;
         return true;
       });
-      document.getElementById('finderMatchCountBadge').textContent = `${matched.length} MODELS →`;
+      document.getElementById('finderMatchCountBadge').textContent = `${matched.length}종 보기 →`;
     }
     function executeQuickFinder() {
       STATE.cat = document.getElementById('finderCatSel').value;
@@ -2680,7 +2671,7 @@
         const cnt = t.id === 'ALL' ? CATALOG_ITEMS.length : CATALOG_ITEMS.filter(x => x.cat === t.id).length;
         return `<button type="button" class="c-tab ${STATE.cat === t.id ? 'active' : ''}" onclick="STATE.cat='${t.id}';renderFilterBars();renderCatalog()">${t.label}<span class="cnt">${cnt}</span></button>`;
       }).join('');
-      document.getElementById('catalogCapChips').innerHTML = `<span class="mono" style="font-size:11px;font-weight:800;color:var(--ink-muted);margin-right:4px;">LOAD:</span>` +
+      document.getElementById('catalogCapChips').innerHTML = `<span style="font-size:11.5px;font-weight:800;color:var(--ink-muted);margin-right:4px;">정격 하중:</span>` +
         CAPACITY_CHIPS.map(c => `<button type="button" class="cap-chip ${STATE.cap === c.id ? 'active' : ''}" onclick="STATE.cap='${c.id}';renderFilterBars();renderCatalog()">${c.label}</button>`).join('');
     }
     function getFilteredCatalog() {
@@ -2728,7 +2719,7 @@
           return `<div class="series-block">
             <div class="series-hdr">
               <div><span class="mono" style="background:rgba(255,255,255,0.14);padding:2px 8px;border-radius:3px;font-size:11px;margin-right:8px;">${rows[0].cat}</span><b>${sName}</b></div>
-              <span class="mono" style="font-size:11.5px;color:#93C5FD;">${rows.length} MODELS</span>
+              <span style="font-size:11.5px;font-weight:700;color:#93C5FD;">${rows.length}종</span>
             </div>
             <div style="overflow-x:auto;">
               <table class="eng-table">
@@ -2774,7 +2765,7 @@
               <div class="prod-series">${it.series}</div>
               <div class="prod-code-row">
                 <span class="prod-code">${it.code}</span>
-                ${isNpay && it.price > 0 ? `<span class="prod-price">₩${it.price.toLocaleString()}</span>` : `<span class="mono" style="font-size:11px;color:var(--cobalt);font-weight:700;">SPEC →</span>`}
+                ${isNpay && it.price > 0 ? `<span class="prod-price">₩${it.price.toLocaleString()}</span>` : `<span style="font-size:11.5px;color:var(--cobalt);font-weight:700;">상세보기 →</span>`}
               </div>
               <table class="prod-spec-tbl">
                 <tr><td class="k">정격하중</td><td class="v" style="color:var(--cobalt);">${it.cap}</td></tr>
@@ -2867,7 +2858,7 @@
       const it = CATALOG_ITEMS.find(x => x.code === code) || CATALOG_ITEMS[0];
       CURRENT_PDP_ITEM = it;
       const siblings = CATALOG_ITEMS.filter(x => x.series === it.series);
-      document.getElementById('pdpModalTitle').textContent = `SPECIFICATION SHEET // [${it.code}] ${it.series}`;
+      document.getElementById('pdpModalTitle').textContent = `[${it.code}] ${it.series} 상세 제원표`;
       document.getElementById('pdpModalBody').innerHTML = `
         <div class="pdp-main-grid">
           <div>
@@ -2875,7 +2866,7 @@
               <img src="${it.img}" alt="${it.code}" style="max-width:100%;max-height:245px;object-fit:contain;" onerror="this.src='${ASSET_BASE}DU-250.jpg'" />
             </div>
             <div style="border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--concrete);">
-              <div class="mono" style="font-size:10.5px;font-weight:800;color:var(--cobalt);margin-bottom:8px;">DIMENSION BLUEPRINT &amp; DEALER CERTIFICATE</div>
+              <div style="font-size:11.5px;font-weight:800;color:var(--cobalt);margin-bottom:8px;">외형 치수 도면 · 정품 수입원 인증</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
                 <img src="${it.cadImg}" alt="외형 치수 도면" style="width:100%;height:115px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:4px;" />
                 <img src="${ASSET_BASE}cert_dealer_oratech.jpg" alt="오라테크 정품 인증서" style="width:100%;height:115px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:4px;cursor:pointer;" onclick="openCertLightbox()" />
@@ -2885,7 +2876,7 @@
           <div style="border:1px solid var(--line-strong);border-radius:8px;padding:22px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;">
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-                <span class="mono" style="background:var(--obsidian);color:#fff;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:3px;">ORATECH GENUINE · ${it.cat}</span>
+                <span style="background:var(--obsidian);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;">오라테크 정품 · ${it.cat}</span>
                 <span class="mono" style="font-size:11px;font-weight:800;color:${it.liftSafe ? 'var(--ok)' : 'var(--signal)'};">${it.liftSafe ? '수직 인양 공인 (브레이크)' : '수평 견인·운반 전용'}</span>
               </div>
               <h2 class="mono" style="font-size:28px;font-weight:800;color:var(--ink);">${it.code}</h2>
@@ -3045,8 +3036,7 @@
       area.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;border-bottom:3px solid var(--obsidian);padding-bottom:14px;margin-bottom:18px;">
           <div>
-            <div class="mono" style="font-size:10.5px;font-weight:800;color:var(--signal);">${isCompare ? 'COMPARISON QUOTATION TEMPLATE' : 'OFFICIAL ENGINEERING QUOTATION'}</div>
-            <h2 style="font-size:28px;font-weight:900;letter-spacing:8px;margin:4px 0;">견 적 서</h2>
+            <h2 style="font-size:28px;font-weight:900;letter-spacing:8px;margin:0 0 6px;">견 적 서</h2>
             <div style="font-size:12px;color:var(--ink-muted);">발행일: <span class="mono">${today}</span> | 유효기간: 발행일로부터 15일</div>
           </div>
           <div style="text-align:right;font-size:12.5px;line-height:1.65;">
@@ -3295,7 +3285,6 @@
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
         <img id="oraPwaModalIcon" src="./icon-192.png" alt="오라테크" style="width:56px;height:56px;border-radius:14px;flex-shrink:0;box-shadow:0 6px 16px rgba(0,0,0,0.2);background:#0f172a;" />
         <div style="min-width:0;flex:1;">
-          <div style="font-size:11px;font-weight:800;color:#2563eb;letter-spacing:0.04em;">MOBILE WEB APP (PWA)</div>
           <div style="font-size:17px;font-weight:800;color:#0f172a;">오라테크</div>
           <div style="font-size:12px;color:#64748b;">(주)오라테크 ORATECH 공식 카탈로그 & 견적</div>
         </div>
