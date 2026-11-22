@@ -1,0 +1,37 @@
+{
+  "id": "./",
+  "name": "오라테크 ORATECH 공식홈페이지",
+  "short_name": "오라테크",
+  "description": "산업용 윈치·호이스트·크레인·운반하역 엔지니어링 & 132종 제원표",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#09111F",
+  "theme_color": "#09111F",
+  "lang": "ko-KR",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
